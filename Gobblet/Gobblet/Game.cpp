@@ -3,7 +3,7 @@
 
 
 Game::Game() :
-	m_window{ sf::VideoMode{ 900, 900,  sf::VideoMode::getDesktopMode().bitsPerPixel }, "Gobblet" },
+	m_window{ sf::VideoMode{ 1200, 1000,  sf::VideoMode::getDesktopMode().bitsPerPixel }, "Gobblet" },
 	m_exitGame{ false } //when true game will exit
 {
 
@@ -11,7 +11,7 @@ Game::Game() :
 }
 
 
-Game::~Game()
+Game::~Game() 
 {
 }
 
@@ -49,7 +49,6 @@ void Game::processEvents()
 		{
 			processKeys(newEvent);
 		}
-
 	}
 }
 
@@ -65,11 +64,29 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		m_window.close();
 	}
+
+	for (int i = 0; i < 16; i++) // 50 * 50 = 2500
+	{
+		if (myPlayer.mousePos.getGlobalBounds().intersects(myGrid.interactable[i].getGlobalBounds()))
+		{
+			 myGrid.interactable[i].setFillColor(sf::Color::Red);
+		}
+		else
+		{
+			 myGrid.interactable[i].setFillColor(sf::Color::Green);
+		}
+	}
+	myPlayer.update(m_window, t_deltaTime);
+	myGrid.update(m_window, t_deltaTime);
+
 }
 
 void Game::render()
 {
 	m_window.clear(sf::Color{ 212, 159, 15 });
+	myPlayer.render(m_window);
+	myGrid.render(m_window);
+
 	m_window.display();
 }
 

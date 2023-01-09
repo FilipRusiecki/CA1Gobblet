@@ -2,6 +2,8 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 #include <SFML/Graphics.hpp>
+#include "Player.h"
+#include "Grid.h"
 
 class Game
 {
@@ -9,6 +11,9 @@ public:
 	Game();
 	~Game();
 	void run();
+	Player myPlayer;
+	Grid myGrid;
+
 
 private:
 	void processEvents();
