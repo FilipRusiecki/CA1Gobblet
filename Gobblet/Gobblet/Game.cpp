@@ -84,7 +84,20 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		if (myPlayer[0].mousePos.getGlobalBounds().intersects(myGrid.interactable[i].getGlobalBounds()))
 		{
-			 myGrid.interactable[i].setFillColor(sf::Color::Red);
+			for (int k = 0; k < 3; k++)
+			{
+				for (int j = 0; j < 4; j++)
+				{
+					// this makes goblet snap to the square position middle
+					if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) == false && myPlayer[k].gob[j].getGlobalBounds().intersects(myGrid.interactable[i].getGlobalBounds()))
+					{
+						std::cout << "SNAP" << std::endl;
+						myPlayer[k].gob[j].setPosition(myGrid.interactable[i].getPosition().x + 90, myGrid.interactable[i].getPosition().y + 90);
+					}
+				}
+				myGrid.interactable[i].setFillColor(sf::Color::Red);
+
+			}
 		}
 		else
 		{
@@ -96,7 +109,6 @@ void Game::update(sf::Time t_deltaTime)
 	myPlayer[2].update(m_window, t_deltaTime);
 
 	myGrid.update(m_window, t_deltaTime);
-
 }
 
 void Game::render()

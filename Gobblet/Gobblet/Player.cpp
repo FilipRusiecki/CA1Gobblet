@@ -13,8 +13,8 @@ void Player::setUpGoblet()
 {
 	gob[0].setRadius(30);
 	gob[1].setRadius(45);
-	gob[2].setRadius(70);
-	gob[3].setRadius(90);
+	gob[2].setRadius(60);
+	gob[3].setRadius(80);
 
 	for (int i = 0; i < 4; i++)
 	{
