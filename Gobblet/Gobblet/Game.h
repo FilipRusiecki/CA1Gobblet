@@ -11,7 +11,7 @@ public:
 	Game();
 	~Game();
 	void run();
-	Player myPlayer;
+	Player myPlayer[3];
 	Grid myGrid;
 
 
