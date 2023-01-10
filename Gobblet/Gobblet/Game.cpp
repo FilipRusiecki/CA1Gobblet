@@ -7,35 +7,7 @@ Game::Game() :
 	m_exitGame{ false } //when true game will exit
 {
 
-	myPlayer[0].gob[0].setPosition(100, 150);
-	myPlayer[0].gob[1].setPosition(100, 150);
-	myPlayer[0].gob[2].setPosition(100, 150);
-	myPlayer[0].gob[3].setPosition(100, 150);
-
-	myPlayer[1].gob[0].setPosition(100, 450);
-	myPlayer[1].gob[1].setPosition(100, 450);
-	myPlayer[1].gob[2].setPosition(100, 450);
-	myPlayer[1].gob[3].setPosition(100, 450);
-
-	myPlayer[2].gob[0].setPosition(100, 750);
-	myPlayer[2].gob[1].setPosition(100, 750);
-	myPlayer[2].gob[2].setPosition(100, 750);
-	myPlayer[2].gob[3].setPosition(100, 750);
-
-	AiEnemy[0].AiGob[0].setPosition(1100, 150);
-	AiEnemy[0].AiGob[1].setPosition(1100, 150);
-	AiEnemy[0].AiGob[2].setPosition(1100, 150);
-	AiEnemy[0].AiGob[3].setPosition(1100, 150);
-
-	AiEnemy[1].AiGob[0].setPosition(1100, 450);
-	AiEnemy[1].AiGob[1].setPosition(1100, 450);
-	AiEnemy[1].AiGob[2].setPosition(1100, 450);
-	AiEnemy[1].AiGob[3].setPosition(1100, 450);
-
-	AiEnemy[2].AiGob[0].setPosition(1100, 750);
-	AiEnemy[2].AiGob[1].setPosition(1100, 750);
-	AiEnemy[2].AiGob[2].setPosition(1100, 750);
-	AiEnemy[2].AiGob[3].setPosition(1100, 750);
+	setStartPos();
 
 
 }
@@ -95,29 +67,21 @@ void Game::update(sf::Time t_deltaTime)
 		m_window.close();
 	}
 
-	for (int i = 0; i < 16; i++) // 50 * 50 = 2500
+	for (int i = 0; i < 16; i++) // 50 * 50 = 2500 ??????????????????????????????????????????????
 	{
+		
+		snapGobletsToSquare(i);
+
 		if (myPlayer[0].mousePos.getGlobalBounds().intersects(myGrid.interactable[i].getGlobalBounds()))
 		{
-			for (int k = 0; k < 3; k++) // controls main set of pieces
-			{
-				for (int j = 0; j < 4; j++) // copntrols size of pieces grabbed
-				{
-					// this makes goblet snap to the square position middle
-					if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) == false && myPlayer[k].gob[j].getGlobalBounds().intersects(myGrid.interactable[i].getGlobalBounds()))
-					{
-						std::cout << "SNAP" << std::endl;
-						myPlayer[k].gob[j].setPosition(myGrid.interactable[i].getPosition().x + 90, myGrid.interactable[i].getPosition().y + 90);
-					}
-				}
-				// set color of square to red when mouse hovers over
-				myGrid.interactable[i].setFillColor(sf::Color::Red);
-			}
+			// set color of square to red when mouse hovers over
+			myGrid.interactable[i].setFillColor(sf::Color::Red);
 		}
 		else
 		{
-			 myGrid.interactable[i].setFillColor(sf::Color::Green);
+			myGrid.interactable[i].setFillColor(sf::Color::Green);
 		}
+
 	}
 	myPlayer[0].update(m_window, t_deltaTime);
 	myPlayer[1].update(m_window, t_deltaTime);
@@ -149,3 +113,73 @@ void Game::render()
 	m_window.display();
 }
 
+
+
+void Game::snapGobletsToSquare(int t_i)
+{
+	for (int k = 0; k < 3; k++) // controls main set of pieces
+	{
+		for (int j = 0; j < 4; j++) // copntrols size of pieces grabbed
+		{
+
+			// this makes goblet snap to the square position middle
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) == false && myPlayer[k].gob[j].getGlobalBounds().intersects(myGrid.interactable[t_i].getGlobalBounds()))
+			{
+				std::cout << "SNAP" << std::endl;
+				myPlayer[k].gob[j].setPosition(myGrid.interactable[t_i].getPosition().x + 90, myGrid.interactable[t_i].getPosition().y + 90);
+
+			}
+
+			//if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) == false && myPlayer[k].gob[j].getGlobalBounds().intersects(myGrid.interactable[i].getGlobalBounds()) == false)
+			//{
+			//	// put goblet in its old position
+
+			//	if (k == 0)
+			//	{
+			//		std::cout << "GO BACK" << std::endl;
+
+			//		myPlayer[k].gob[j].setPosition(100, 150);
+			//	}
+
+			//}
+
+		}
+	}
+}
+
+
+
+
+
+void Game::setStartPos() 
+{
+	myPlayer[0].gob[0].setPosition(100, 150);
+	myPlayer[0].gob[1].setPosition(100, 150);
+	myPlayer[0].gob[2].setPosition(100, 150);
+	myPlayer[0].gob[3].setPosition(100, 150);
+
+	myPlayer[1].gob[0].setPosition(100, 450);
+	myPlayer[1].gob[1].setPosition(100, 450);
+	myPlayer[1].gob[2].setPosition(100, 450);
+	myPlayer[1].gob[3].setPosition(100, 450);
+
+	myPlayer[2].gob[0].setPosition(100, 750);
+	myPlayer[2].gob[1].setPosition(100, 750);
+	myPlayer[2].gob[2].setPosition(100, 750);
+	myPlayer[2].gob[3].setPosition(100, 750);
+
+	AiEnemy[0].AiGob[0].setPosition(1100, 150);
+	AiEnemy[0].AiGob[1].setPosition(1100, 150);
+	AiEnemy[0].AiGob[2].setPosition(1100, 150);
+	AiEnemy[0].AiGob[3].setPosition(1100, 150);
+
+	AiEnemy[1].AiGob[0].setPosition(1100, 450);
+	AiEnemy[1].AiGob[1].setPosition(1100, 450);
+	AiEnemy[1].AiGob[2].setPosition(1100, 450);
+	AiEnemy[1].AiGob[3].setPosition(1100, 450);
+
+	AiEnemy[2].AiGob[0].setPosition(1100, 750);
+	AiEnemy[2].AiGob[1].setPosition(1100, 750);
+	AiEnemy[2].AiGob[2].setPosition(1100, 750);
+	AiEnemy[2].AiGob[3].setPosition(1100, 750);
+}

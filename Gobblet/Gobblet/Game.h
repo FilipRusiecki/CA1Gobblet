@@ -23,7 +23,8 @@ private:
 
 	void update(sf::Time t_deltaTime);
 	void render();
-
+	void setStartPos();
+	void snapGobletsToSquare( int i);
 	sf::RenderWindow m_window; // main SFML window
 	bool m_exitGame; // control exiting game
 

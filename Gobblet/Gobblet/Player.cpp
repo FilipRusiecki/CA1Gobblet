@@ -39,7 +39,7 @@ void Player::mouseCheckGrab()
 {
 	if (mousePos.getGlobalBounds().intersects(gob[3].getGlobalBounds()) )// HERE IS THE CHECK FIOR  LARGE CIRCLE
 	{
-		std::cout << "collided with smallest" << std::endl;
+		//std::cout << "collided with smallest" << std::endl;
 		// grab the thing here 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && m_isGobGrabbed == false)
 		{
@@ -50,7 +50,7 @@ void Player::mouseCheckGrab()
 	
 	else if (mousePos.getGlobalBounds().intersects(gob[2].getGlobalBounds()))// HERE IS THE CHECK FIOR  BIG CIRCLE
 	{
-		std::cout << "collided with second" << std::endl;
+		//std::cout << "collided with second" << std::endl;
 		// grab the thing here 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && m_isGobGrabbed == false)
 		{
@@ -61,7 +61,7 @@ void Player::mouseCheckGrab()
 
 	else if (mousePos.getGlobalBounds().intersects(gob[1].getGlobalBounds()))// HERE IS THE CHECK FIOR SECOND MEDIOUM CIRCLE
 	{
-		std::cout << "collided with big" << std::endl;
+		//std::cout << "collided with big" << std::endl;
 		// grab the thing here 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && m_isGobGrabbed == false)
 		{
@@ -72,7 +72,7 @@ void Player::mouseCheckGrab()
 
 	else if (mousePos.getGlobalBounds().intersects(gob[0].getGlobalBounds())) // HERE IS THE CHECK FIOR SMALLER CIRCLE
 	{
-		std::cout << "collided with large" << std::endl;
+		//std::cout << "collided with large" << std::endl;
 		// grab the thing here 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && m_isGobGrabbed == false)
 		{
@@ -91,7 +91,7 @@ void Player::update(sf::RenderWindow& t_window, sf::Time t_deltaTime)
 	sf::Vector2i mousePosition;
 	mousePosition = sf::Mouse::getPosition(t_window); //Get mouse position
 	mousePos.setPosition(mousePosition.x, mousePosition.y);
-	std::cout << mousePosition.x  << " " << mousePosition.y  << std::endl;
+	//std::cout << mousePosition.x  << " " << mousePosition.y  << std::endl;
 	mouseCheckGrab();
 }
 
