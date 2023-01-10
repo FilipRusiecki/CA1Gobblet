@@ -17,11 +17,26 @@ Game::Game() :
 	myPlayer[1].gob[2].setPosition(100, 450);
 	myPlayer[1].gob[3].setPosition(100, 450);
 
-
 	myPlayer[2].gob[0].setPosition(100, 750);
 	myPlayer[2].gob[1].setPosition(100, 750);
 	myPlayer[2].gob[2].setPosition(100, 750);
 	myPlayer[2].gob[3].setPosition(100, 750);
+
+	AiEnemy[0].AiGob[0].setPosition(1100, 150);
+	AiEnemy[0].AiGob[1].setPosition(1100, 150);
+	AiEnemy[0].AiGob[2].setPosition(1100, 150);
+	AiEnemy[0].AiGob[3].setPosition(1100, 150);
+
+	AiEnemy[1].AiGob[0].setPosition(1100, 450);
+	AiEnemy[1].AiGob[1].setPosition(1100, 450);
+	AiEnemy[1].AiGob[2].setPosition(1100, 450);
+	AiEnemy[1].AiGob[3].setPosition(1100, 450);
+
+	AiEnemy[2].AiGob[0].setPosition(1100, 750);
+	AiEnemy[2].AiGob[1].setPosition(1100, 750);
+	AiEnemy[2].AiGob[2].setPosition(1100, 750);
+	AiEnemy[2].AiGob[3].setPosition(1100, 750);
+
 
 }
 
@@ -84,9 +99,9 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		if (myPlayer[0].mousePos.getGlobalBounds().intersects(myGrid.interactable[i].getGlobalBounds()))
 		{
-			for (int k = 0; k < 3; k++)
+			for (int k = 0; k < 3; k++) // controls main set of pieces
 			{
-				for (int j = 0; j < 4; j++)
+				for (int j = 0; j < 4; j++) // copntrols size of pieces grabbed
 				{
 					// this makes goblet snap to the square position middle
 					if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) == false && myPlayer[k].gob[j].getGlobalBounds().intersects(myGrid.interactable[i].getGlobalBounds()))
@@ -95,8 +110,8 @@ void Game::update(sf::Time t_deltaTime)
 						myPlayer[k].gob[j].setPosition(myGrid.interactable[i].getPosition().x + 90, myGrid.interactable[i].getPosition().y + 90);
 					}
 				}
+				// set color of square to red when mouse hovers over
 				myGrid.interactable[i].setFillColor(sf::Color::Red);
-
 			}
 		}
 		else
@@ -108,6 +123,13 @@ void Game::update(sf::Time t_deltaTime)
 	myPlayer[1].update(m_window, t_deltaTime);
 	myPlayer[2].update(m_window, t_deltaTime);
 
+	AiEnemy[0].update(m_window, t_deltaTime);
+	AiEnemy[1].update(m_window, t_deltaTime);
+	AiEnemy[2].update(m_window, t_deltaTime);
+
+
+
+
 	myGrid.update(m_window, t_deltaTime);
 }
 
@@ -118,6 +140,11 @@ void Game::render()
 	myPlayer[0].render(m_window);
 	myPlayer[1].render(m_window);
 	myPlayer[2].render(m_window);
+
+	AiEnemy[0].render(m_window);
+	AiEnemy[1].render(m_window);
+	AiEnemy[2].render(m_window);
+
 
 	m_window.display();
 }

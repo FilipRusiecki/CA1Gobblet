@@ -11,27 +11,24 @@ Player::Player()
 
 void Player::setUpGoblet()
 {
-	gob[0].setRadius(30);
-	gob[1].setRadius(45);
-	gob[2].setRadius(60);
-	gob[3].setRadius(80);
+	gob[0].setRadius(30); // SMALLEST 
+	gob[1].setRadius(45); // MEDIUM
+	gob[2].setRadius(60); // BIG
+	gob[3].setRadius(80); // LARGE
 
 	for (int i = 0; i < 4; i++)
 	{
 		gob[i].setFillColor(sf::Color::White);
-		//gob[i].setPosition(100, 100);
 		gob[i].setOrigin(gob[i].getRadius() , gob[i].getRadius() );
+		gob[i].setOutlineThickness(5.0f);
+		gob[i].setOutlineColor(sf::Color::Magenta);
 
 
 	}
-
-	gob[0].setPosition(100, 100);
-	gob[1].setPosition(100, 300);
-	gob[2].setPosition(100, 450);
-	gob[3].setPosition(100, 750);
-
-
-
+	//gob[0].setPosition(100, 100);// SMALLEST 
+	//gob[1].setPosition(100, 300);// MEDIUM
+	//gob[2].setPosition(100, 450);// BIG
+	//gob[3].setPosition(100, 750);// LARGE
 
 	mousePos.setRadius(10.0f);
 	mousePos.setFillColor(sf::Color::Red);
