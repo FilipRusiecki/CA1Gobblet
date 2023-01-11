@@ -7,6 +7,12 @@ Game::Game() :
 	m_exitGame{ false } //when true game will exit
 {
 	//state = GameState::gamePlaying;
+	gameMode = 1;
+	if (!font.loadFromFile("ASSETS/FONTS/ariblk.ttf"))
+	{
+		std::cout << "error with font file file";
+	}
+	m_mainMenu.initialise(font);		//passing custom font for the menu buttons
 	playerTurn = true;
 	setStartPos();
 }
@@ -71,11 +77,16 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		m_window.close();
 	}
-
+	if (gameMode == MENU)
+	{
+		m_mainMenu.update(m_window, gameMode);
+	}
+	else if (gameMode == PLAY)
+	{
 		/// <summary>
-		/// This loop goes throguh all the cells on the grid that are interactable with the mouse
-		/// </summary>
-		/// <param name="t_deltaTime"></param>
+	/// This loop goes throguh all the cells on the grid that are interactable with the mouse
+	/// </summary>
+	/// <param name="t_deltaTime"></param>
 		for (int i = 0; i < 16; i++)
 		{
 			for (int k = 0; k < 3; k++)
@@ -149,6 +160,8 @@ void Game::update(sf::Time t_deltaTime)
 			mouseCheckGrab();
 		}
 
+	}
+	
 		
 	
 }
@@ -164,25 +177,30 @@ void Game::update(sf::Time t_deltaTime)
 /// </summary>
 void Game::render()
 {
-	
-		
-			m_window.clear(sf::Color{ 212, 159, 15 });
-			myGrid.render(m_window);
-			myPlayer[0].render(m_window);
-			myPlayer[1].render(m_window);
-			myPlayer[2].render(m_window);
+	if (gameMode == MENU)
+	{
+		m_window.clear(sf::Color{ 212, 159, 15 });
 
-			//myPlayer2.render(m_window);
-			AiEnemy[0].render(m_window);
-			AiEnemy[1].render(m_window);
-			AiEnemy[2].render(m_window);
+		m_mainMenu.draw(m_window);
+		m_window.display();
+
+	}
+	else if (gameMode == PLAY)
+	{
+		m_window.clear(sf::Color{ 212, 159, 15 });
+		myGrid.render(m_window);
+		myPlayer[0].render(m_window);
+		myPlayer[1].render(m_window);
+		myPlayer[2].render(m_window);
 
 
-			m_window.display();
-		
-		
+		AiEnemy[0].render(m_window);
+		AiEnemy[1].render(m_window);
+		AiEnemy[2].render(m_window);
 
-	
+
+		m_window.display();
+	}
 }
 
 
@@ -261,25 +279,23 @@ void Game::getbestMove()
 
 
 
-	for (int i = 0; i < 16; i++)
-	{
-	/*	for (int p = 0; p < 2; p++)
-		{
-			if (myPlayer[p].gob[3].getGlobalBounds().intersects(AiEnemy[p].AiGob[i].getGlobalBounds()))
-			{
-				std::cout << "hello" << std::endl;
-				AiEnemy[p].aiCanMove[i] = true;
-			}
-		}*/
-
+	//for (int i = 0; i < 16; i++)
+	//{
+	//	for (int p = 0; p < 2; p++)
+	//	{
+	//		if (myPlayer[p].gob[3].getGlobalBounds().intersects(AiEnemy[p].AiGob[i].getGlobalBounds()))
+	//		{
+	//			std::cout << "hello" << std::endl;
+	//			AiEnemy[p].aiCanMove[i] = true;
+	//		}
+	//	}
+	//}
 		//if(myPlayer[0].gob[3].getGlobalBounds().intersects(AiEnemy[randomValue2].AiGob[randomValue3].getGlobalBounds()))
 		//{ 
 		//	std::cout << "hello" << std::endl;
 		//	AiEnemy[randomValue2].aiCanMove[randomValue3] = false;
-
 		//}
-
-		if (myGrid.occupied[randomValue] == false) //&& AiEnemy[randomValue2].aiCanMove[randomValue2] == false
+		if (myGrid.occupied[randomValue] == false && AiEnemy[randomValue2].aiCanMove[randomValue2] == false)
 		{
 			
 			AiEnemy[randomValue2].AiGob[randomValue3].setPosition(myGrid.interactable[randomValue].getPosition().x + 90, myGrid.interactable[randomValue].getPosition().y + 90);
@@ -292,12 +308,13 @@ void Game::getbestMove()
 			randomValue3 = rand() % 4 + 0;
 			AiEnemy[randomValue2].AiGob[randomValue3].setPosition(myGrid.interactable[randomValue].getPosition().x + 90, myGrid.interactable[randomValue].getPosition().y + 90);
 			//myGrid.occupied[i] = true;
+			//myGrid.occupied[randomValue] = true;
 
 		}
 
 
 
-	}
+	//}
 
 }
 

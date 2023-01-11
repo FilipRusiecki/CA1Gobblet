@@ -9,8 +9,9 @@
 //#include "Player2.h"
 #include "AI.h"
 #include "Grid.h"
+#include "Globals.h"
 //#include "GameState.h"
-
+#include "MainMenu.h"
 class Game
 {
 public:
@@ -38,9 +39,15 @@ public:
 	int temp = 0;
 
 	
-
-
-
+	/// <summary>
+	/// this variable is used to change between gamemodes such as menu or game
+	/// </summary>
+	int gameMode;
+	sf::Font font;
+	/// <summary>
+	/// object used to display main menu
+	/// </summary>
+	MainMenu m_mainMenu;
 	/// <summary>
 	/// The following functions are needed to create the ai we need for the project
 	/// </summary>
