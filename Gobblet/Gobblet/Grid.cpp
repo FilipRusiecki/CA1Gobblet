@@ -7,7 +7,9 @@ Cell::Cell()
 Cell::~Cell()
 {
 }
-
+/// <summary>
+/// In this cell constructor we create a default cell for the grid
+/// </summary>
 Cell::Cell(sf::Vector2f t_position, int t_cellID, sf::Font& t_font)
 {
 	//if (!m_fonts.loadFromFile("Assets/Fonts/Pixellari.ttf"))
@@ -61,6 +63,9 @@ void Cell::addNeighbour(int t_cellID) // adding a cell id to the neighbours
 }
 
 
+/// <summary>
+/// in Grid constructor we call the initialisemap function to create the grid
+/// </summary>
 Grid::Grid()
 {
 
@@ -83,6 +88,9 @@ Cell& Grid::returnCell(int t_id)
 
 
 
+/// <summary>
+/// this function initialises the grid and spawns each cell 
+/// </summary>
 void Grid::initialiseMap()
 {
 	srand(time(NULL));
@@ -101,11 +109,17 @@ void Grid::initialiseMap()
 		{
 			Cell cell(cellPositions, count, m_font);
 
-			cellPositions.x += 800 / 4; // adjusting cell position on screen - x axis
+			/// <summary>
+			/// adjusting cell position on screen - x axis
+			/// </summary>
+			cellPositions.x += 800 / 4; 
 			if (cellPositions.x >= 900)
 			{
+				/// <summary>
+				/// adjusting cell position on screen - y axis
+				/// </summary>
 				cellPositions.x = 200;
-				cellPositions.y += 800 / 4; // adjusting cell position on screen - y axis
+				cellPositions.y += 800 / 4;
 
 			}
 
@@ -115,11 +129,17 @@ void Grid::initialiseMap()
 	}
 	int p = 0;
 
+	/// <summary>
+	/// this loop allows the spawn of the interactable squares that are on the gird
+	/// </summary>
 	for (int i = 0; i < 16; i++) // 50 * 50 = 2500
 	{
 		int posY = i / 4;
 		int posX = i % 4;
-		
+
+		/// <summary>
+		/// here we set the size, colour and position of each square
+		/// </summary>
 		interactable[i].setSize(sf::Vector2f(180.0f, 180.0f));
 		interactable[i].setFillColor(sf::Color::Green);
 		interactable[i].setPosition(m_cellsArray.at(i).m_shape.getPosition().x+ 10, m_cellsArray.at(i).m_shape.getPosition().y+10);
@@ -135,11 +155,17 @@ void Grid::update(sf::RenderWindow& t_window, sf::Time t_deltaTime) // update me
 }
 
 
+/// <summary>
+/// this function returns all the cells.
+/// </summary>
 std::vector<Cell>& Grid::returnAllCells() // returning all the cells
 {
 	return m_cellsArray;
 }
 
+/// <summary>
+/// this function finds a cell at a specific point 
+/// </summary>
 Cell* Grid::findCellPoint(sf::Vector2f point)
 {
 	for (int i = 0; i < m_cellsArray.size(); i++)
@@ -152,6 +178,9 @@ Cell* Grid::findCellPoint(sf::Vector2f point)
 	return nullptr;
 }
 
+/// <summary>
+/// this fucntion renders the gird and everything that is inside it. 
+/// </summary>
 void Grid::render(sf::RenderWindow& t_window) // rendering the grid
 {
 
