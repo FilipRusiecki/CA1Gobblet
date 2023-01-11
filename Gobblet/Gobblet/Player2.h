@@ -2,11 +2,18 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-class Player {
+class Player2 {
 public:
 	//one set of gobblets there is 4 in one set.... we need 3 sets 
-	sf::CircleShape gob[4];
-	bool gobGrabbed[4];
+	sf::CircleShape gob1[12];
+	bool gobGrabbed[12];
+
+	int temp = 15;
+
+
+	sf::CircleShape gob2[4];
+	sf::CircleShape gob3[4];
+
 
 	// mouse pos
 	sf::CircleShape mousePos;
@@ -21,7 +28,7 @@ public:
 	bool gob1isGrabbed = false;
 
 
-	Player();
+	Player2();
 	void update(sf::RenderWindow& t_window, sf::Time t_deltaTime);
 	void render(sf::RenderWindow& t_window);
 	void setUpGoblet();

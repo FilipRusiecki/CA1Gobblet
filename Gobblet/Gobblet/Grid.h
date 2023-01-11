@@ -98,6 +98,7 @@ public:
 	int m_currentRow;
 	int m_currentCol;
 	sf::RectangleShape interactable[16];
+	bool occupied[16];
 
 private:
 

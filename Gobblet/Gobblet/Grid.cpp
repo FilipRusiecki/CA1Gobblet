@@ -123,7 +123,7 @@ void Grid::initialiseMap()
 		interactable[i].setSize(sf::Vector2f(180.0f, 180.0f));
 		interactable[i].setFillColor(sf::Color::Green);
 		interactable[i].setPosition(m_cellsArray.at(i).m_shape.getPosition().x+ 10, m_cellsArray.at(i).m_shape.getPosition().y+10);
-
+		occupied[i] == false;
 	}
 	m_cellsArray.size();
 

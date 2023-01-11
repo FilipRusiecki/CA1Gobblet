@@ -35,56 +35,81 @@ void Player::setUpGoblet()
 	mousePos.setOrigin(5.0f, 5.0f);
 }
 
-void Player::mouseCheckGrab()
-{
-	if (mousePos.getGlobalBounds().intersects(gob[3].getGlobalBounds()) )// HERE IS THE CHECK FIOR  LARGE CIRCLE
-	{
-		//std::cout << "collided with smallest" << std::endl;
-		// grab the thing here 
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && m_isGobGrabbed == false)
-		{
-			gob[3].setPosition(mousePos.getPosition());
-
-		}
-	}
-	
-	else if (mousePos.getGlobalBounds().intersects(gob[2].getGlobalBounds()))// HERE IS THE CHECK FIOR  BIG CIRCLE
-	{
-		//std::cout << "collided with second" << std::endl;
-		// grab the thing here 
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && m_isGobGrabbed == false)
-		{
-			gob[2].setPosition(mousePos.getPosition());
-
-		}
-	}
-
-	else if (mousePos.getGlobalBounds().intersects(gob[1].getGlobalBounds()))// HERE IS THE CHECK FIOR SECOND MEDIOUM CIRCLE
-	{
-		//std::cout << "collided with big" << std::endl;
-		// grab the thing here 
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && m_isGobGrabbed == false)
-		{
-			gob[1].setPosition(mousePos.getPosition());
-
-		}
-	}
-
-	else if (mousePos.getGlobalBounds().intersects(gob[0].getGlobalBounds())) // HERE IS THE CHECK FIOR SMALLER CIRCLE
-	{
-		//std::cout << "collided with large" << std::endl;
-		// grab the thing here 
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && m_isGobGrabbed == false)
-		{
-			gob[0].setPosition(mousePos.getPosition());
-
-		}
-	}
-
-
-
-	
-}
+//void Player::mouseCheckGrab()
+//{
+//	if (mousePos.getGlobalBounds().intersects(gob[3].getGlobalBounds()) )// HERE IS THE CHECK FIOR  LARGE CIRCLE
+//	{
+//		//std::cout << "collided with smallest" << std::endl;
+//		// grab the thing here 
+//		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && m_isGobGrabbed == false && gob3isGrabbed == false && gob2isGrabbed == false && gob1isGrabbed == false)
+//		{
+//		
+//			gob[3].setPosition(mousePos.getPosition());
+//			gob4isGrabbed = true;
+//		}
+//		//if (!sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+//		//{
+//		//	gob4isGrabbed = false;
+//		//}
+//	}
+//	
+//	else if (mousePos.getGlobalBounds().intersects(gob[2].getGlobalBounds()))// HERE IS THE CHECK FIOR  BIG CIRCLE
+//	{
+//		//std::cout << "collided with second" << std::endl;
+//		// grab the thing here 
+//		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && m_isGobGrabbed == false  && cannotGrab == false&& gob4isGrabbed == false && gob2isGrabbed == false && gob1isGrabbed == false)
+//		{
+//
+//			gob[2].setPosition(mousePos.getPosition());
+//			gob3isGrabbed = true;
+//		}
+//		//if (!sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+//		//{
+//		//	gob3isGrabbed = false;
+//		//	
+//		//}
+//	}
+//
+//	else if (mousePos.getGlobalBounds().intersects(gob[1].getGlobalBounds()))// HERE IS THE CHECK FIOR SECOND MEDIOUM CIRCLE
+//	{
+//		//std::cout << "collided with big" << std::endl;
+//		// grab the thing here 
+//		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && m_isGobGrabbed == false && gob4isGrabbed == false && gob3isGrabbed == false && gob1isGrabbed == false)
+//		{
+//			gob[1].setPosition(mousePos.getPosition());
+//			gob2isGrabbed = true;
+//		}
+//		//if (!sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+//		//{
+//		//	gob2isGrabbed = false;
+//		//	
+//		//}
+//	}
+//
+//	else if (mousePos.getGlobalBounds().intersects(gob[0].getGlobalBounds())) // HERE IS THE CHECK FIOR SMALLER CIRCLE
+//	{
+//		//std::cout << "collided with large" << std::endl;
+//		// grab the thing here 
+//		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && m_isGobGrabbed == false  && gob4isGrabbed == false && gob3isGrabbed == false && gob2isGrabbed == false)
+//		{
+//			gob[0].setPosition(mousePos.getPosition());
+//			gob1isGrabbed = true;
+//		}
+//		//if (!sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+//		//{
+//		//	
+//
+//		//}
+//	}
+//	else if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) == false)
+//	{
+//		
+//		gob4isGrabbed = false;
+//		gob3isGrabbed = false;
+//		gob2isGrabbed = false;
+//		gob1isGrabbed = false;
+//	}
+//}
 
 void Player::update(sf::RenderWindow& t_window, sf::Time t_deltaTime)
 {
@@ -92,7 +117,7 @@ void Player::update(sf::RenderWindow& t_window, sf::Time t_deltaTime)
 	mousePosition = sf::Mouse::getPosition(t_window); //Get mouse position
 	mousePos.setPosition(mousePosition.x, mousePosition.y);
 	//std::cout << mousePosition.x  << " " << mousePosition.y  << std::endl;
-	mouseCheckGrab();
+	//mouseCheckGrab();
 }
 
 void Player::render(sf::RenderWindow& t_window)

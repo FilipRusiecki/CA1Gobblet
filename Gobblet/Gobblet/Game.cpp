@@ -67,12 +67,11 @@ void Game::update(sf::Time t_deltaTime)
 		m_window.close();
 	}
 
-	for (int i = 0; i < 16; i++) // 50 * 50 = 2500 ??????????????????????????????????????????????
+	for (int i = 0; i < 16; i++) 
 	{
 		
-		snapGobletsToSquare(i);
 
-		if (myPlayer[0].mousePos.getGlobalBounds().intersects(myGrid.interactable[i].getGlobalBounds()))
+		if (myPlayer2.mousePos.getGlobalBounds().intersects(myGrid.interactable[i].getGlobalBounds()))
 		{
 			// set color of square to red when mouse hovers over
 			myGrid.interactable[i].setFillColor(sf::Color::Red);
@@ -81,30 +80,85 @@ void Game::update(sf::Time t_deltaTime)
 		{
 			myGrid.interactable[i].setFillColor(sf::Color::Green);
 		}
+		if (myGrid.occupied[i] == true)
+		{
+			myGrid.interactable[i].setFillColor(sf::Color::Blue);
+		}
+		//snapGobletsToSquare(i);
 
 	}
-	myPlayer[0].update(m_window, t_deltaTime);
+	/*myPlayer[0].update(m_window, t_deltaTime);
 	myPlayer[1].update(m_window, t_deltaTime);
-	myPlayer[2].update(m_window, t_deltaTime);
+	myPlayer[2].update(m_window, t_deltaTime);*/
 
+	myPlayer2.update(m_window, t_deltaTime);
 	AiEnemy[0].update(m_window, t_deltaTime);
 	AiEnemy[1].update(m_window, t_deltaTime);
 	AiEnemy[2].update(m_window, t_deltaTime);
 
-
-
-
 	myGrid.update(m_window, t_deltaTime);
+
+
+
+	//for (int k = 0; k < 3; k++) // controls main set of pieces
+	//{
+	//	for (int j = 0; j < 4; j++) // copntrols size of pieces grabbed
+	//	{
+	//		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+	//		{
+	//			if (myPlayer[k].mousePos.getGlobalBounds().intersects(myPlayer[k].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+	//			{
+	//				myPlayer[k].gob[3].setPosition(myPlayer[k].mousePos.getPosition());
+	//			
+	//			}
+
+	//			if (myPlayer[k].mousePos.getGlobalBounds().intersects(myPlayer[k].gob[2].getGlobalBounds()) && cannotGrab == false)// HERE IS THE CHECK FIOR  LARGE CIRCLE
+	//			{
+	//				myPlayer[k].gob[2].setPosition(myPlayer[k].mousePos.getPosition());
+	//				cannotGrab = true;
+	//			}
+
+	//			if (myPlayer[k].mousePos.getGlobalBounds().intersects(myPlayer[k].gob[1].getGlobalBounds()) && cannotGrab == false)// HERE IS THE CHECK FIOR  LARGE CIRCLE
+	//			{
+	//				myPlayer[k].gob[1].setPosition(myPlayer[k].mousePos.getPosition());
+	//				cannotGrab = true;
+	//			}
+
+	//			if (myPlayer[k].mousePos.getGlobalBounds().intersects(myPlayer[k].gob[0].getGlobalBounds()) && cannotGrab == false)// HERE IS THE CHECK FIOR  LARGE CIRCLE
+	//			{
+	//				myPlayer[k].gob[0].setPosition(myPlayer[k].mousePos.getPosition());
+	//				cannotGrab = true;
+	//			}
+	//		}
+	//	}
+	//}
+
+
+
+
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+	{
+		cannotGrab == false;
+	}
+
+
+
+
+
+
+
+
 }
 
 void Game::render()
 {
 	m_window.clear(sf::Color{ 212, 159, 15 });
 	myGrid.render(m_window);
-	myPlayer[0].render(m_window);
-	myPlayer[1].render(m_window);
-	myPlayer[2].render(m_window);
+	//myPlayer[0].render(m_window);
+	//myPlayer[1].render(m_window);
+	//myPlayer[2].render(m_window);
 
+	myPlayer2.render(m_window);
 	AiEnemy[0].render(m_window);
 	AiEnemy[1].render(m_window);
 	AiEnemy[2].render(m_window);
@@ -121,27 +175,73 @@ void Game::snapGobletsToSquare(int t_i)
 	{
 		for (int j = 0; j < 4; j++) // copntrols size of pieces grabbed
 		{
-
+			
 			// this makes goblet snap to the square position middle
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) == false && myPlayer[k].gob[j].getGlobalBounds().intersects(myGrid.interactable[t_i].getGlobalBounds()))
-			{
-				std::cout << "SNAP" << std::endl;
-				myPlayer[k].gob[j].setPosition(myGrid.interactable[t_i].getPosition().x + 90, myGrid.interactable[t_i].getPosition().y + 90);
 
-			}
 
-			//if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) == false && myPlayer[k].gob[j].getGlobalBounds().intersects(myGrid.interactable[i].getGlobalBounds()) == false)
+
+
+			//if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) == false && myPlayer[k].gob[j].getGlobalBounds().intersects(myGrid.interactable[t_i].getGlobalBounds()))
 			//{
-			//	// put goblet in its old position
+			//	
+			//		if (myGrid.occupied[t_i] == false)
+			//		{
+			//			std::cout << "SNAP" << std::endl;
+			//			myPlayer[k].gob[j].setPosition(myGrid.interactable[t_i].getPosition().x + 90, myGrid.interactable[t_i].getPosition().y + 90);
+			//			myGrid.occupied[t_i] = true;
+			//		}
+			//		//for (int r = 0; r < 16; r++) // copntrols size of pieces grabbed
+			//		//{
+			//		//	if (myGrid.interactable[t_i].getGlobalBounds().intersects(myGrid.interactable[r].getGlobalBounds()))
+			//		//	{
+			//		//		myPlayer[k].gob[r].setPosition(100, 150);
+			//		//	}
+			//		//}
+			//		//checkIfGobIsBigger();
 
-			//	if (k == 0)
-			//	{
-			//		std::cout << "GO BACK" << std::endl;
-
-			//		myPlayer[k].gob[j].setPosition(100, 150);
 			//	}
 
-			//}
+
+
+
+
+				if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) == true)
+				{
+					myGrid.occupied[t_i] = false;
+				}
+
+				/*		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) == false && !myPlayer[k].gob[j].getGlobalBounds().intersects(myGrid.interactable[t_i].getGlobalBounds()))
+						{
+							if (k == 0)
+							{
+								myPlayer[k].gob[j].setPosition(100, 150);
+							}
+						}*/
+
+						//if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) == false && myPlayer[k].gob[j].getGlobalBounds().intersects(myGrid.interactable[i].getGlobalBounds()) == false)
+						//{
+						//	// put goblet in its old position
+
+						//	if (k == 0)
+						//	{
+						//		std::cout << "GO BACK" << std::endl;
+
+						//		myPlayer[k].gob[j].setPosition(100, 150);
+						//	}
+
+						//}
+			
+		}
+	}
+}
+
+void Game::checkIfGobIsBigger()
+{
+
+	for (int k = 0; k < 3; k++) // controls main set of pieces
+	{
+		for (int j = 0; j < 4; j++) // copntrols size of pieces grabbed
+		{
 
 		}
 	}
@@ -151,22 +251,23 @@ void Game::snapGobletsToSquare(int t_i)
 
 
 
+
 void Game::setStartPos() 
 {
-	myPlayer[0].gob[0].setPosition(100, 150);
-	myPlayer[0].gob[1].setPosition(100, 150);
-	myPlayer[0].gob[2].setPosition(100, 150);
-	myPlayer[0].gob[3].setPosition(100, 150);
+	//myPlayer[0].gob[0].setPosition(100, 150);
+	//myPlayer[0].gob[1].setPosition(100, 150);
+	//myPlayer[0].gob[2].setPosition(100, 150);
+	//myPlayer[0].gob[3].setPosition(100, 150);
 
-	myPlayer[1].gob[0].setPosition(100, 450);
-	myPlayer[1].gob[1].setPosition(100, 450);
-	myPlayer[1].gob[2].setPosition(100, 450);
-	myPlayer[1].gob[3].setPosition(100, 450);
+	//myPlayer[1].gob[0].setPosition(100, 450);
+	//myPlayer[1].gob[1].setPosition(100, 450);
+	//myPlayer[1].gob[2].setPosition(100, 450);
+	//myPlayer[1].gob[3].setPosition(100, 450);
 
-	myPlayer[2].gob[0].setPosition(100, 750);
-	myPlayer[2].gob[1].setPosition(100, 750);
-	myPlayer[2].gob[2].setPosition(100, 750);
-	myPlayer[2].gob[3].setPosition(100, 750);
+	//myPlayer[2].gob[0].setPosition(100, 750);
+	//myPlayer[2].gob[1].setPosition(100, 750);
+	//myPlayer[2].gob[2].setPosition(100, 750);
+	//myPlayer[2].gob[3].setPosition(100, 750);
 
 	AiEnemy[0].AiGob[0].setPosition(1100, 150);
 	AiEnemy[0].AiGob[1].setPosition(1100, 150);
@@ -183,3 +284,5 @@ void Game::setStartPos()
 	AiEnemy[2].AiGob[2].setPosition(1100, 750);
 	AiEnemy[2].AiGob[3].setPosition(1100, 750);
 }
+
+
