@@ -13,12 +13,13 @@ public:
 	Game();
 	~Game();
 	void run();
-	//Player myPlayer[3]; // 1/2/3 is all three sets of all goblets e.g one has 4 goblets in it
-	Player2 myPlayer2;
+	Player myPlayer[3]; // 1/2/3 is all three sets of all goblets e.g one has 4 goblets in it
+	//Player2 myPlayer2;
 	AI AiEnemy[3];// 1/2/3 is all three sets of all goblets e.g one has 4 goblets in it
 	Grid myGrid;
 
 
+	int temp = 0;
 private:
 	void processEvents();
 	void processKeys(sf::Event t_event);
@@ -28,7 +29,7 @@ private:
 	void setStartPos();
 	void snapGobletsToSquare( int i);
 	void checkIfGobIsBigger();
-
+	void mouseCheckGrab();
 
 	sf::RenderWindow m_window; // main SFML window
 	bool m_exitGame; // control exiting game
