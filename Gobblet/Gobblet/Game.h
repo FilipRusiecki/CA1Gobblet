@@ -13,22 +13,51 @@ public:
 	Game();
 	~Game();
 	void run();
-	Player myPlayer[3]; // 1/2/3 is all three sets of all goblets e.g one has 4 goblets in it
-	//Player2 myPlayer2;
-	AI AiEnemy[3];// 1/2/3 is all three sets of all goblets e.g one has 4 goblets in it
+	/// <summary>
+	/// here we set up the player 
+	/// 1/2/3 is all three sets of all goblets e.g one has 4 goblets in it
+	/// </summary>
+	Player myPlayer[3];
+	/// <summary>
+	/// here we set up the Ai 
+	/// 1/2/3 is all three sets of all goblets e.g one has 4 goblets in it
+	/// </summary>
+	AI AiEnemy[3];
+	/// <summary>
+	/// Here we include out grind to the game.h 
+	/// </summary>
 	Grid myGrid;
 
-
+	/// <summary>
+	/// this is a temp number to make sure we can only grab one single item from all the sets 
+	/// </summary>
 	int temp = 0;
 private:
+	/// <summary>
+	/// this is a process events function which will run through all the events
+	/// </summary>
 	void processEvents();
-	void processKeys(sf::Event t_event);
 
+	/// <summary>
+	/// here is the gupdate function for the game, this function will check other updates such as player or ai and will update the game
+	/// </summary>
 	void update(sf::Time t_deltaTime);
+	/// <summary>
+	/// here we pass all the other classes the render window to be a ble to render inside the game
+	/// </summary>
 	void render();
+	/// <summary>
+	/// here we set the poistions of the sets and pieces for the player and Ai
+	/// </summary>
 	void setStartPos();
-	void snapGobletsToSquare( int i);
-	void checkIfGobIsBigger();
+	/// <summary>
+	/// this fucniton allows us to snap the currently holding piece to the square that we are hovering over 
+	/// </summary>
+	void snapGobletsToSquare(int i);
+
+	/// <summary>
+	/// here we check if the mouse is going to be pressed and checks what are we clicking on.
+	/// </summary>
 	void mouseCheckGrab();
 
 	sf::RenderWindow m_window; // main SFML window

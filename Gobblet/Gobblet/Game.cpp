@@ -18,6 +18,9 @@ Game::~Game()
 }
 
 
+/// <summary>
+/// This allows the game loop to continuesly keep running
+/// </summary>
 void Game::run()
 {
 	sf::Clock clock;
@@ -37,7 +40,9 @@ void Game::run()
 		render(); // as many as possible
 	}
 }
-
+/// <summary>
+/// this Game function goes through events and make sure they happpen
+/// </summary>
 void Game::processEvents()
 {
 	sf::Event newEvent;
@@ -49,17 +54,17 @@ void Game::processEvents()
 		}
 		if (sf::Event::KeyPressed == newEvent.type) //user pressed a key
 		{
-			processKeys(newEvent);
+		
 		}
 	}
 }
 
-void Game::processKeys(sf::Event t_event)
-{
-
-}
 
 
+
+/// <summary>
+/// here we updated the whole game and everything that needs to be updated from all the classes
+/// </summary>
 void Game::update(sf::Time t_deltaTime)
 {
 	if (m_exitGame)
@@ -67,39 +72,66 @@ void Game::update(sf::Time t_deltaTime)
 		m_window.close();
 	}
 
+	/// <summary>
+	/// This loop goes throguh all the cells on the grid that are interactable with the mouse
+	/// </summary>
+	/// <param name="t_deltaTime"></param>
 	for (int i = 0; i < 16; i++) 
 	{
 		for (int k = 0; k < 3; k++)
 		{
 
+			/// <summary>
+			/// if the mouse is hovering over the box, the box will be coloured red 
+			/// </summary>
 			if (myPlayer[k].mousePos.getGlobalBounds().intersects(myGrid.interactable[i].getGlobalBounds()))
 			{
 				// set color of square to red when mouse hovers over
 				myGrid.interactable[i].setFillColor(sf::Color::Red);
 			}
+			/// <summary>
+			/// when the mouse is not hovering over the box the box will be coloured green.
+			/// </summary>
 			else
 			{
 				myGrid.interactable[i].setFillColor(sf::Color::Green);
 			}
+			/// <summary>
+			/// When there is piece placed on the specific box it will be coloured blue to show that its occupied
+			/// </summary>
 			if (myGrid.occupied[i] == true)
 			{
 				myGrid.interactable[i].setFillColor(sf::Color::Blue);
 			}
+			/// <summary>
+			/// this fucniton allows us to snap the currently holding piece to the square that we are hovering over 
+			/// </summary>
 			snapGobletsToSquare(i);
 		}
 	}
+	/// <summary>
+	/// updating the player and its pieces
+	/// </summary>
 	myPlayer[0].update(m_window, t_deltaTime);
 	myPlayer[1].update(m_window, t_deltaTime);
 	myPlayer[2].update(m_window, t_deltaTime);
 
-	//myPlayer2.update(m_window, t_deltaTime);
+	/// <summary>
+	/// updating the AI and its pieces
+	/// </summary>
 	AiEnemy[0].update(m_window, t_deltaTime);
 	AiEnemy[1].update(m_window, t_deltaTime);
 	AiEnemy[2].update(m_window, t_deltaTime);
 
+	/// <summary>
+	/// updating the gird and cells 
+	/// </summary>
 	myGrid.update(m_window, t_deltaTime);
 
 
+	/// <summary>
+	/// when the button is not pressed here we check and turn off the necessary bools to false
+	/// </summary>
 	if (!sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
 	{
 		cannotGrab == false;
@@ -108,12 +140,16 @@ void Game::update(sf::Time t_deltaTime)
 
 
 
-
+	/// <summary>
+	/// here in this fucntion we check what is being grabbed and hovered over by the mouse 
+	/// </summary>
 	mouseCheckGrab();
 
 
 }
-
+/// <summary>
+/// this function renders everything thats necessary such as Grid, Player and AI
+/// </summary>
 void Game::render()
 {
 	m_window.clear(sf::Color{ 212, 159, 15 });
@@ -132,7 +168,10 @@ void Game::render()
 }
 
 
-
+/// <summary>
+/// this function allows us to snap pieces into the grid
+/// </summary>
+/// <param name="t_i"></param>
 void Game::snapGobletsToSquare(int t_i)
 {
 	for (int k = 0; k < 3; k++) // controls main set of pieces
@@ -145,6 +184,9 @@ void Game::snapGobletsToSquare(int t_i)
 
 
 
+			/// <summary>
+			/// if mouse button is relased then we allow the snap to happen
+			/// </summary>
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) == false && myPlayer[k].gob[j].getGlobalBounds().intersects(myGrid.interactable[t_i].getGlobalBounds()))
 			{
 				
@@ -154,68 +196,24 @@ void Game::snapGobletsToSquare(int t_i)
 						myPlayer[k].gob[j].setPosition(myGrid.interactable[t_i].getPosition().x + 90, myGrid.interactable[t_i].getPosition().y + 90);
 						myGrid.occupied[t_i] = true;
 					}
-					//for (int r = 0; r < 16; r++) // copntrols size of pieces grabbed
-					//{
-					//	if (myGrid.interactable[t_i].getGlobalBounds().intersects(myGrid.interactable[r].getGlobalBounds()))
-					//	{
-					//		myPlayer[k].gob[r].setPosition(100, 150);
-					//	}
-					//}
-					//checkIfGobIsBigger();
 
 			}
-
-
-
-
-
 				if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) == true)
 				{
 					myGrid.occupied[t_i] = false;
 				}
-
-				/*		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) == false && !myPlayer[k].gob[j].getGlobalBounds().intersects(myGrid.interactable[t_i].getGlobalBounds()))
-						{
-							if (k == 0)
-							{
-								myPlayer[k].gob[j].setPosition(100, 150);
-							}
-						}*/
-
-						//if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) == false && myPlayer[k].gob[j].getGlobalBounds().intersects(myGrid.interactable[i].getGlobalBounds()) == false)
-						//{
-						//	// put goblet in its old position
-
-						//	if (k == 0)
-						//	{
-						//		std::cout << "GO BACK" << std::endl;
-
-						//		myPlayer[k].gob[j].setPosition(100, 150);
-						//	}
-
-						//}
 			
 		}
 	}
 }
 
-void Game::checkIfGobIsBigger()
-{
-
-	for (int k = 0; k < 3; k++) // controls main set of pieces
-	{
-		for (int j = 0; j < 4; j++) // copntrols size of pieces grabbed
-		{
-
-		}
-	}
-}
 
 
 
 
-
-
+/// <summary>
+/// this fucntion sets the start pos of each piece and each set
+/// </summary>
 void Game::setStartPos() 
 {
 	myPlayer[0].gob[0].setPosition(100, 150);
@@ -257,16 +255,21 @@ void Game::setStartPos()
 
 
 
+/// <summary>
+/// here we will check for the mouse grabbing of certain pieces
+/// </summary>
 void Game::mouseCheckGrab()
 {
 
 
 	for (int k = 0; k < 3; k++) // controls main set of pieces
 	{
+		/// <summary>
+		/// Here we check if the large piece has been clicked on by the player, if yes we also check if any other piece is grabbed, if any other piece is grabbed we will not allow to hold 2 pieces at same time, other wise  
+		/// we set the piece to the mouse location
+		/// </summary>
 		if (myPlayer[k].mousePos.getGlobalBounds().intersects(myPlayer[k].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
 		{
-
-			//std::cout << "collided with smallest" << std::endl;
 			// grab the thing here 
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[k].m_isGobGrabbed == false && myPlayer[k].cannotGrab == false && myPlayer[k].gob3isGrabbed == false && myPlayer[k].gob2isGrabbed == false && myPlayer[k].gob1isGrabbed == false)
 			{
@@ -276,15 +279,13 @@ void Game::mouseCheckGrab()
 				temp = 1000;
 
 			}
-			//if (!sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
-			//{
-			//	gob4isGrabbed = false;
-			//}
 		}
-
+		/// <summary>
+		/// Here we check if the big piece has been clicked on by the player, if yes we also check if any other piece is grabbed, if any other piece is grabbed we will not allow to hold 2 pieces at same time, other wise  
+		/// we set the piece to the mouse location
+		/// </summary>
 		else if (myPlayer[k].mousePos.getGlobalBounds().intersects(myPlayer[k].gob[2].getGlobalBounds()))// HERE IS THE CHECK FIOR  BIG CIRCLE
 		{
-			//std::cout << "collided with second" << std::endl;
 			// grab the thing here 
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && temp!= 1000 && myPlayer[k].cannotGrab == false && myPlayer[k].m_isGobGrabbed == false && myPlayer[k].gob4isGrabbed == false && myPlayer[k].gob2isGrabbed == false && myPlayer[k].gob1isGrabbed == false)
 			{
@@ -292,47 +293,42 @@ void Game::mouseCheckGrab()
 				myPlayer[k].gob[2].setPosition(myPlayer[0].mousePos.getPosition());
 				myPlayer[k].gob3isGrabbed = true;
 			}
-			//if (!sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
-			//{
-			//	gob3isGrabbed = false;
-			//	
-			//}
+
 		}
 
+		/// <summary>
+		/// Here we check if the small piece has been clicked on by the player, if yes we also check if any other piece is grabbed, if any other piece is grabbed we will not allow to hold 2 pieces at same time, other wise  
+		/// we set the piece to the mouse location
+		/// </summary>
 		else if (myPlayer[k].mousePos.getGlobalBounds().intersects(myPlayer[k].gob[1].getGlobalBounds()))// HERE IS THE CHECK FIOR SECOND MEDIOUM CIRCLE
 		{
-			//std::cout << "collided with big" << std::endl;
+
 			// grab the thing here 
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[k].m_isGobGrabbed == false && myPlayer[k].cannotGrab == false && myPlayer[k].gob4isGrabbed == false && myPlayer[k].gob3isGrabbed == false && myPlayer[k].gob1isGrabbed == false)
 			{
 				myPlayer[k].gob[1].setPosition(myPlayer[0].mousePos.getPosition());
 				myPlayer[k].gob2isGrabbed = true;
 			}
-			//if (!sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
-			//{
-			//	gob2isGrabbed = false;
-			//	
-			//}
-		}
 
+		}
+		/// <summary>
+		/// Here we check if the tiny piece has been clicked on by the player, if yes we also check if any other piece is grabbed, if any other piece is grabbed we will not allow to hold 2 pieces at same time, other wise  
+		/// we set the piece to the mouse location
+		/// </summary>
 		else if (myPlayer[k].mousePos.getGlobalBounds().intersects(myPlayer[k].gob[0].getGlobalBounds())) // HERE IS THE CHECK FIOR SMALLER CIRCLE
 		{
-			//std::cout << "collided with large" << std::endl;
 			// grab the thing here 
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[k].m_isGobGrabbed == false && myPlayer[k].cannotGrab == false && myPlayer[k].gob4isGrabbed == false && myPlayer[k].gob3isGrabbed == false && myPlayer[k].gob2isGrabbed == false)
 			{
 				myPlayer[k].gob[0].setPosition(myPlayer[k].mousePos.getPosition());
 				myPlayer[k].gob1isGrabbed = true;
 			}
-			//if (!sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
-			//{
-			//	
-
-			//}
 		}
 
 
-
+		/// <summary>
+		/// this function removes all the bools that are blocking the picking up of the pieces when the left click is not clicked
+		/// </summary>
 		else if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) == false)
 		{
 

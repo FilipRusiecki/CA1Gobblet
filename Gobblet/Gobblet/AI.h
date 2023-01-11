@@ -2,10 +2,14 @@
 #pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>
-
+/// <summary>
+/// this is class for AI, here we controll the AI as required
+/// </summary>
 class AI {
 public:
-	//one set of gobblets there is 4 in one set.... we need 3 sets 
+	/// <summary>
+	/// making an array of circle shapes for 3 sets 
+	/// </summary>
 	sf::CircleShape AiGob[4];
 
 
