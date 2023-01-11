@@ -20,7 +20,9 @@
 #include <stack>
 #include "Player.h"
 
-
+/// <summary>
+/// this is cell class, this has all the cells inside the grid
+/// </summary>
 class Cell {
 public:
 	Cell();
@@ -74,13 +76,25 @@ public:
 	Grid();
 	~Grid();
 	Cell& returnCell(int t_id);
-	Player myPlayer;
-	
-	void initialiseMap();
-	void update(sf::RenderWindow& t_window, sf::Time t_deltaTime);
 
+	Player myPlayer;
+	/// <summary>
+	/// this function sets up the grid
+	/// </summary>
+	void initialiseMap();
+
+	/// <summary>
+	/// this function updates our grid 
+	/// </summary>
+	void update(sf::RenderWindow& t_window, sf::Time t_deltaTime);
+	/// <summary>
+	/// this function renders the whole grid 
+	/// </summary>
 	void render(sf::RenderWindow& t_window);
 
+	/// <summary>
+	/// this function finds the cell at a certain point
+	/// </summary>
 	Cell* findCellPoint(sf::Vector2f point);
 
 	int m = 1;
@@ -97,6 +111,9 @@ public:
 	int m_maxCols = 4;
 	int m_currentRow;
 	int m_currentCol;
+	/// <summary>
+	/// here we make interactables squares on the gird that we will snap circles into 
+	/// </summary>
 	sf::RectangleShape interactable[16];
 	bool occupied[16];
 
