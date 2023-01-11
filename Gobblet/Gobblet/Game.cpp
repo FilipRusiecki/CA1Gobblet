@@ -296,7 +296,6 @@ void Game::setStartPos()
 
 void Game::mouseCheckGrab()
 {
-	std::cout << temp << std::endl;
 
 
 	for (int k = 0; k < 3; k++) // controls main set of pieces
@@ -426,6 +425,7 @@ void Game::mouseCheckGrab()
 
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
 			{
+				std::cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@" << std::endl;
 
 				//myPlayer[0].gob[3].setPosition(myPlayer[0].mousePos.getPosition());
 				myPlayer[1].gob4isGrabbed = true;
@@ -436,7 +436,9 @@ void Game::mouseCheckGrab()
 			//}
 		}
 
-
+	}
+	if (myPlayer[1].gob2isGrabbed)
+	{
 
 		if (myPlayer[1].gob[1].getGlobalBounds().intersects(myPlayer[0].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
 		{
@@ -454,7 +456,10 @@ void Game::mouseCheckGrab()
 			//	gob4isGrabbed = false;
 			//}
 		}
+	}
 
+	if (myPlayer[1].gob1isGrabbed)
+	{
 		if (myPlayer[1].gob[0].getGlobalBounds().intersects(myPlayer[0].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
 		{
 			//std::cout << "collided with smallest" << std::endl;
@@ -477,8 +482,8 @@ void Game::mouseCheckGrab()
 		///////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////
-
 	}
+	
 
 	// set THREE interacts with set ONE 
 
@@ -500,6 +505,10 @@ void Game::mouseCheckGrab()
 			//	gob4isGrabbed = false;
 			//}
 		}
+	}
+	if (myPlayer[2].gob2isGrabbed)
+	{
+
 		if (myPlayer[2].gob[1].getGlobalBounds().intersects(myPlayer[0].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
 		{
 			//std::cout << "collided with smallest" << std::endl;
@@ -516,7 +525,10 @@ void Game::mouseCheckGrab()
 			//	gob4isGrabbed = false;
 			//}
 		}
+	}
 
+	if (myPlayer[2].gob1isGrabbed)
+	{
 		if (myPlayer[2].gob[0].getGlobalBounds().intersects(myPlayer[0].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
 		{
 			//std::cout << "collided with smallest" << std::endl;
@@ -570,7 +582,10 @@ void Game::mouseCheckGrab()
 			//	gob4isGrabbed = false;
 			//}
 		}
+	}
 
+	if (myPlayer[0].gob2isGrabbed)
+	{
 
 		if (myPlayer[0].gob[1].getGlobalBounds().intersects(myPlayer[1].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
 		{
@@ -590,6 +605,9 @@ void Game::mouseCheckGrab()
 			//	gob4isGrabbed = false;
 			//}
 		}
+	}
+	if (myPlayer[0].gob1isGrabbed)
+	{
 
 		if (myPlayer[0].gob[0].getGlobalBounds().intersects(myPlayer[1].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
 		{
@@ -608,18 +626,19 @@ void Game::mouseCheckGrab()
 			//	gob4isGrabbed = false;
 			//}
 		}
+	}
 
 		///////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////
-	}
+	
 
 
 	// set ONE interacts with set THREE 
 
-	if (myPlayer[2].gob3isGrabbed)
+	if (myPlayer[0].gob3isGrabbed)
 	{
 
 		if (myPlayer[0].gob[2].getGlobalBounds().intersects(myPlayer[2].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
@@ -642,6 +661,10 @@ void Game::mouseCheckGrab()
 			//}
 		}
 
+	}
+
+	if (myPlayer[0].gob2isGrabbed)
+	{
 
 		if (myPlayer[0].gob[1].getGlobalBounds().intersects(myPlayer[2].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
 		{
@@ -661,6 +684,9 @@ void Game::mouseCheckGrab()
 			//	gob4isGrabbed = false;
 			//}
 		}
+	}
+	if (myPlayer[0].gob1isGrabbed)
+	{
 
 		if (myPlayer[0].gob[0].getGlobalBounds().intersects(myPlayer[2].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
 		{
@@ -689,6 +715,7 @@ void Game::mouseCheckGrab()
 
 
 
+
 	// set TWO interacts with set THREE 
 
 	if (myPlayer[1].gob3isGrabbed)
@@ -712,7 +739,10 @@ void Game::mouseCheckGrab()
 			//	gob4isGrabbed = false;
 			//}
 		}
+	}
 
+	if (myPlayer[1].gob2isGrabbed)
+	{
 
 		if (myPlayer[1].gob[1].getGlobalBounds().intersects(myPlayer[2].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
 		{
@@ -732,7 +762,10 @@ void Game::mouseCheckGrab()
 			//	gob4isGrabbed = false;
 			//}
 		}
+	}
 
+	if (myPlayer[1].gob1isGrabbed)
+	{
 		if (myPlayer[1].gob[0].getGlobalBounds().intersects(myPlayer[2].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
 		{
 			//std::cout << "collided with smallest" << std::endl;
@@ -756,8 +789,8 @@ void Game::mouseCheckGrab()
 		///////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////
-
 	}
+	
 
 		// set THREE interacts with set TWO 
 	if (myPlayer[2].gob3isGrabbed)
@@ -783,6 +816,10 @@ void Game::mouseCheckGrab()
 			//}
 		}
 
+	}
+
+	if (myPlayer[2].gob2isGrabbed)
+	{
 
 		if (myPlayer[2].gob[1].getGlobalBounds().intersects(myPlayer[1].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
 		{
@@ -802,6 +839,10 @@ void Game::mouseCheckGrab()
 			//	gob4isGrabbed = false;
 			//}
 		}
+	}
+
+	if (myPlayer[2].gob1isGrabbed)
+	{
 
 		if (myPlayer[2].gob[0].getGlobalBounds().intersects(myPlayer[1].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
 		{
