@@ -6,10 +6,9 @@ Game::Game() :
 	m_window{ sf::VideoMode{ 1200, 1000,  sf::VideoMode::getDesktopMode().bitsPerPixel }, "Gobblet" },
 	m_exitGame{ false } //when true game will exit
 {
-
+	//state = GameState::gamePlaying;
+	playerTurn = true;
 	setStartPos();
-
-
 }
 
 
@@ -40,6 +39,7 @@ void Game::run()
 		render(); // as many as possible
 	}
 }
+
 /// <summary>
 /// this Game function goes through events and make sure they happpen
 /// </summary>
@@ -72,100 +72,126 @@ void Game::update(sf::Time t_deltaTime)
 		m_window.close();
 	}
 
-	/// <summary>
-	/// This loop goes throguh all the cells on the grid that are interactable with the mouse
-	/// </summary>
-	/// <param name="t_deltaTime"></param>
-	for (int i = 0; i < 16; i++) 
-	{
-		for (int k = 0; k < 3; k++)
+		/// <summary>
+		/// This loop goes throguh all the cells on the grid that are interactable with the mouse
+		/// </summary>
+		/// <param name="t_deltaTime"></param>
+		for (int i = 0; i < 16; i++)
+		{
+			for (int k = 0; k < 3; k++)
+			{
+
+				/// <summary>
+				/// if the mouse is hovering over the box, the box will be coloured red 
+				/// </summary>
+				if (myPlayer[k].mousePos.getGlobalBounds().intersects(myGrid.interactable[i].getGlobalBounds()))
+				{
+					// set color of square to red when mouse hovers over
+					myGrid.interactable[i].setFillColor(sf::Color::Red);
+				}
+				/// <summary>
+				/// when the mouse is not hovering over the box the box will be coloured green.
+				/// </summary>
+				else
+				{
+					myGrid.interactable[i].setFillColor(sf::Color::Green);
+				}
+				/// <summary>
+				/// When there is piece placed on the specific box it will be coloured blue to show that its occupied
+				/// </summary>
+				if (myGrid.occupied[i] == true)
+				{
+					myGrid.interactable[i].setFillColor(sf::Color::Blue);
+				}
+				/// <summary>
+				/// this fucniton allows us to snap the currently holding piece to the square that we are hovering over 
+				/// </summary>
+				snapGobletsToSquare(i);
+			}
+		}
+
+
+
+		/// <summary>
+		/// updating the player and its pieces
+		/// </summary>		
+		myPlayer[0].update(m_window, t_deltaTime);
+		myPlayer[1].update(m_window, t_deltaTime);
+		myPlayer[2].update(m_window, t_deltaTime);
+
+		/// <summary>
+		/// updating the AI and its pieces
+		/// </summary>
+		AiEnemy[0].update(m_window, t_deltaTime);
+		AiEnemy[1].update(m_window, t_deltaTime);
+		AiEnemy[2].update(m_window, t_deltaTime);
+
+		/// <summary>
+		/// updating the gird and cells 
+		/// </summary>
+		myGrid.update(m_window, t_deltaTime);
+
+
+		/// <summary>
+		/// when the button is not pressed here we check and turn off the necessary bools to false
+		/// </summary>
+		if (!sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+		{
+			cannotGrab == false;
+		}
+
+
+		/// <summary>
+		/// here in this fucntion we check what is being grabbed and hovered over by the mouse 
+		/// </summary>
+		if (playerTurn == true)
+		{
+			mouseCheckGrab();
+		}
+		else if (playerTurn == false)
 		{
 
-			/// <summary>
-			/// if the mouse is hovering over the box, the box will be coloured red 
-			/// </summary>
-			if (myPlayer[k].mousePos.getGlobalBounds().intersects(myGrid.interactable[i].getGlobalBounds()))
-			{
-				// set color of square to red when mouse hovers over
-				myGrid.interactable[i].setFillColor(sf::Color::Red);
-			}
-			/// <summary>
-			/// when the mouse is not hovering over the box the box will be coloured green.
-			/// </summary>
-			else
-			{
-				myGrid.interactable[i].setFillColor(sf::Color::Green);
-			}
-			/// <summary>
-			/// When there is piece placed on the specific box it will be coloured blue to show that its occupied
-			/// </summary>
-			if (myGrid.occupied[i] == true)
-			{
-				myGrid.interactable[i].setFillColor(sf::Color::Blue);
-			}
-			/// <summary>
-			/// this fucniton allows us to snap the currently holding piece to the square that we are hovering over 
-			/// </summary>
-			snapGobletsToSquare(i);
 		}
-	}
-	/// <summary>
-	/// updating the player and its pieces
-	/// </summary>
-	myPlayer[0].update(m_window, t_deltaTime);
-	myPlayer[1].update(m_window, t_deltaTime);
-	myPlayer[2].update(m_window, t_deltaTime);
-
-	/// <summary>
-	/// updating the AI and its pieces
-	/// </summary>
-	AiEnemy[0].update(m_window, t_deltaTime);
-	AiEnemy[1].update(m_window, t_deltaTime);
-	AiEnemy[2].update(m_window, t_deltaTime);
-
-	/// <summary>
-	/// updating the gird and cells 
-	/// </summary>
-	myGrid.update(m_window, t_deltaTime);
-
-
-	/// <summary>
-	/// when the button is not pressed here we check and turn off the necessary bools to false
-	/// </summary>
-	if (!sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
-	{
-		cannotGrab == false;
-	}
-
-
-
-
-	/// <summary>
-	/// here in this fucntion we check what is being grabbed and hovered over by the mouse 
-	/// </summary>
-	mouseCheckGrab();
-
-
+		
+	
 }
+
+
+
+
+
+
+
 /// <summary>
 /// this function renders everything thats necessary such as Grid, Player and AI
 /// </summary>
 void Game::render()
 {
-	m_window.clear(sf::Color{ 212, 159, 15 });
-	myGrid.render(m_window);
-	myPlayer[0].render(m_window);
-	myPlayer[1].render(m_window);
-	myPlayer[2].render(m_window);
+	
+		
+			m_window.clear(sf::Color{ 212, 159, 15 });
+			myGrid.render(m_window);
+			myPlayer[0].render(m_window);
+			myPlayer[1].render(m_window);
+			myPlayer[2].render(m_window);
 
-	//myPlayer2.render(m_window);
-	AiEnemy[0].render(m_window);
-	AiEnemy[1].render(m_window);
-	AiEnemy[2].render(m_window);
+			//myPlayer2.render(m_window);
+			AiEnemy[0].render(m_window);
+			AiEnemy[1].render(m_window);
+			AiEnemy[2].render(m_window);
 
 
-	m_window.display();
+			m_window.display();
+		
+		
+
+	
 }
+
+
+
+
+
 
 
 /// <summary>
@@ -187,7 +213,7 @@ void Game::snapGobletsToSquare(int t_i)
 			/// <summary>
 			/// if mouse button is relased then we allow the snap to happen
 			/// </summary>
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) == false && myPlayer[k].gob[j].getGlobalBounds().intersects(myGrid.interactable[t_i].getGlobalBounds()))
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) == false && playerTurn == true&& myPlayer[k].gob[j].getGlobalBounds().intersects(myGrid.interactable[t_i].getGlobalBounds()))
 			{
 				
 					if (myGrid.occupied[t_i] == false)
@@ -195,6 +221,8 @@ void Game::snapGobletsToSquare(int t_i)
 						std::cout << "SNAP" << std::endl;
 						myPlayer[k].gob[j].setPosition(myGrid.interactable[t_i].getPosition().x + 90, myGrid.interactable[t_i].getPosition().y + 90);
 						myGrid.occupied[t_i] = true;
+						enemiesGo();
+
 					}
 
 			}
@@ -207,7 +235,44 @@ void Game::snapGobletsToSquare(int t_i)
 	}
 }
 
+void Game::enemiesGo()
+{
+	std::cout << "enemies go" << std::endl;
+	playerTurn = false;
 
+	getbestMove();
+	playerTurn = true;
+
+
+
+
+
+
+}
+
+void Game::getbestMove()
+{
+	int bestValue = -999999;
+	int bestMove;
+	randomValue = rand() % 15 + 0;
+	randomValue2 = rand() % 3 + 0;
+
+	for (int i = 0; i < 15; i++)
+	{
+		if (myGrid.occupied[randomValue] == false)
+		{
+			AiEnemy[randomValue2].AiGob[randomValue].setPosition(myGrid.interactable[randomValue].getPosition().x + 90, myGrid.interactable[randomValue].getPosition().y + 90);
+		}
+		else
+		{
+
+			randomValue = rand() % 15 + 0;
+			AiEnemy[randomValue2].AiGob[randomValue].setPosition(myGrid.interactable[randomValue].getPosition().x + 90, myGrid.interactable[randomValue].getPosition().y + 90);
+		
+		}
+	}
+
+}
 
 
 
@@ -341,11 +406,6 @@ void Game::mouseCheckGrab()
 			myPlayer[2].cannotGrab = false;
 
 			temp = 0;
-
-
-
-
-
 
 		}
 	}

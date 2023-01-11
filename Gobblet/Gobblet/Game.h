@@ -2,10 +2,14 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 #include <SFML/Graphics.hpp>
+#include <algorithm>
+#include <vector>
+#include <iostream>
 //#include "Player.h"
 #include "Player2.h"
 #include "AI.h"
 #include "Grid.h"
+//#include "GameState.h"
 
 class Game
 {
@@ -32,6 +36,18 @@ public:
 	/// this is a temp number to make sure we can only grab one single item from all the sets 
 	/// </summary>
 	int temp = 0;
+
+	//GameState state;
+	const int MAX_DEPTH = 5; // maximum depth of the minimax search
+
+	bool playerTurn = false;
+
+
+	void enemiesGo();
+	int randomValue;
+	int randomValue2;
+
+	void getbestMove();
 private:
 	/// <summary>
 	/// this is a process events function which will run through all the events
