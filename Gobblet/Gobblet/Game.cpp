@@ -142,16 +142,13 @@ void Game::update(sf::Time t_deltaTime)
 
 
 		/// <summary>
-		/// here in this fucntion we check what is being grabbed and hovered over by the mouse 
+		/// here in this fucntion we check what is being grabbed and hovered over by the mouse only if its players turn
 		/// </summary>
 		if (playerTurn == true)
 		{
 			mouseCheckGrab();
 		}
-		else if (playerTurn == false)
-		{
 
-		}
 		
 	
 }
@@ -234,7 +231,9 @@ void Game::snapGobletsToSquare(int t_i)
 		}
 	}
 }
-
+/// <summary>
+/// This function is making the enmies move after a player has their turn
+/// </summary>
 void Game::enemiesGo()
 {
 	std::cout << "enemies go" << std::endl;
@@ -249,27 +248,55 @@ void Game::enemiesGo()
 
 
 }
-
+/// <summary>
+/// This function is going to make sure that the enemy will make their best move
+/// </summary>
 void Game::getbestMove()
 {
-	int bestValue = -999999;
+	int bestValue = 0;
 	int bestMove;
-	randomValue = rand() % 15 + 0;
+	randomValue = rand() % 16 + 0;
 	randomValue2 = rand() % 3 + 0;
+	randomValue3 = rand() % 4 + 0;
 
-	for (int i = 0; i < 15; i++)
+
+
+	for (int i = 0; i < 16; i++)
 	{
-		if (myGrid.occupied[randomValue] == false)
+	/*	for (int p = 0; p < 2; p++)
 		{
-			AiEnemy[randomValue2].AiGob[randomValue].setPosition(myGrid.interactable[randomValue].getPosition().x + 90, myGrid.interactable[randomValue].getPosition().y + 90);
+			if (myPlayer[p].gob[3].getGlobalBounds().intersects(AiEnemy[p].AiGob[i].getGlobalBounds()))
+			{
+				std::cout << "hello" << std::endl;
+				AiEnemy[p].aiCanMove[i] = true;
+			}
+		}*/
+
+		//if(myPlayer[0].gob[3].getGlobalBounds().intersects(AiEnemy[randomValue2].AiGob[randomValue3].getGlobalBounds()))
+		//{ 
+		//	std::cout << "hello" << std::endl;
+		//	AiEnemy[randomValue2].aiCanMove[randomValue3] = false;
+
+		//}
+
+		if (myGrid.occupied[randomValue] == false) //&& AiEnemy[randomValue2].aiCanMove[randomValue2] == false
+		{
+			
+			AiEnemy[randomValue2].AiGob[randomValue3].setPosition(myGrid.interactable[randomValue].getPosition().x + 90, myGrid.interactable[randomValue].getPosition().y + 90);
+			//myGrid.occupied[randomValue] = true;
 		}
 		else
 		{
+			randomValue = rand() % 16 + 0;
+			randomValue2 = rand() % 3 + 0;
+			randomValue3 = rand() % 4 + 0;
+			AiEnemy[randomValue2].AiGob[randomValue3].setPosition(myGrid.interactable[randomValue].getPosition().x + 90, myGrid.interactable[randomValue].getPosition().y + 90);
+			//myGrid.occupied[i] = true;
 
-			randomValue = rand() % 15 + 0;
-			AiEnemy[randomValue2].AiGob[randomValue].setPosition(myGrid.interactable[randomValue].getPosition().x + 90, myGrid.interactable[randomValue].getPosition().y + 90);
-		
 		}
+
+
+
 	}
 
 }

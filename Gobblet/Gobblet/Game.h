@@ -5,8 +5,8 @@
 #include <algorithm>
 #include <vector>
 #include <iostream>
-//#include "Player.h"
-#include "Player2.h"
+#include "Player.h"
+//#include "Player2.h"
 #include "AI.h"
 #include "Grid.h"
 //#include "GameState.h"
@@ -37,17 +37,21 @@ public:
 	/// </summary>
 	int temp = 0;
 
-	//GameState state;
+	
+
+
+
+	/// <summary>
+	/// The following functions are needed to create the ai we need for the project
+	/// </summary>
 	const int MAX_DEPTH = 5; // maximum depth of the minimax search
-
 	bool playerTurn = false;
-
-
 	void enemiesGo();
 	int randomValue;
 	int randomValue2;
-
+	int randomValue3;
 	void getbestMove();
+	int minimax();
 private:
 	/// <summary>
 	/// this is a process events function which will run through all the events

@@ -19,7 +19,7 @@ void AI::setUpGoblet()
 		AiGob[i].setOrigin(AiGob[i].getRadius(), AiGob[i].getRadius());
 		AiGob[i].setOutlineThickness(5.0f);
 		AiGob[i].setOutlineColor(sf::Color::Magenta);
-
+		aiCanMove[i] = true;
 	}
 	//gob[0].setPosition(100, 100);// SMALLEST 
 	//gob[1].setPosition(100, 300);// MEDIUM

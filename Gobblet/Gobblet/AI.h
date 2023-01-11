@@ -11,7 +11,7 @@ public:
 	/// making an array of circle shapes for 3 sets 
 	/// </summary>
 	sf::CircleShape AiGob[4];
-
+	bool aiCanMove[4];
 
 
 	AI();
