@@ -356,143 +356,40 @@ void Game::mouseCheckGrab()
 
 
 
+
+
+
+
+
 	///////////////////////////////////////////////////////////////	///////////////////////////////////////////////////////////////	///////////////////////////////////////////////////////////////
 
-	///////////////////////////////////////////////////////////////
-
-
-	// set TWO interacts with set ONE 
-
-	if (myPlayer[1].gob3isGrabbed)
-	{
-		if (myPlayer[1].gob[2].getGlobalBounds().intersects(myPlayer[0].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
-		{
-			myPlayer[0].cannotGrab = true;
-
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
-			{
-				std::cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@" << std::endl;
-				myPlayer[1].gob4isGrabbed = true;
-			}
-		}
-
-
-	}
-	if (myPlayer[1].gob2isGrabbed)
-	{
-
-		if (myPlayer[1].gob[1].getGlobalBounds().intersects(myPlayer[0].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
-		{
-			//std::cout << "collided with smallest" << std::endl;
-			// grab the thing here 
-			myPlayer[0].cannotGrab = true;
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
-			{
-
-				//myPlayer[0].gob[3].setPosition(myPlayer[0].mousePos.getPosition());
-				myPlayer[1].gob4isGrabbed = true;
-			}
-			//if (!sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
-			//{
-			//	gob4isGrabbed = false;
-			//}
-		}
-	}
-
-	if (myPlayer[1].gob1isGrabbed)
-	{
-		if (myPlayer[1].gob[0].getGlobalBounds().intersects(myPlayer[0].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
-		{
-			//std::cout << "collided with smallest" << std::endl;
-			// grab the thing here 
-			myPlayer[0].cannotGrab = true;
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
-			{
-
-				//myPlayer[0].gob[3].setPosition(myPlayer[0].mousePos.getPosition());
-				myPlayer[1].gob4isGrabbed = true;
-			}
-			//if (!sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
-			//{
-			//	gob4isGrabbed = false;
-			//}
-		}
-
-		///////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////
-	}
-	
-
-	// set THREE interacts with set ONE 
-
-	if (myPlayer[2].gob3isGrabbed)
-	{
-		if (myPlayer[2].gob[2].getGlobalBounds().intersects(myPlayer[0].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
-		{
-			//std::cout << "collided with smallest" << std::endl;
-			// grab the thing here 
-			myPlayer[0].cannotGrab = true;
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
-			{
-
-				//myPlayer[0].gob[3].setPosition(myPlayer[0].mousePos.getPosition());
-				myPlayer[2].gob4isGrabbed = true;
-			}
-			//if (!sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
-			//{
-			//	gob4isGrabbed = false;
-			//}
-		}
-	}
-	if (myPlayer[2].gob2isGrabbed)
-	{
-
-		if (myPlayer[2].gob[1].getGlobalBounds().intersects(myPlayer[0].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
-		{
-			//std::cout << "collided with smallest" << std::endl;
-			// grab the thing here 
-			myPlayer[0].cannotGrab = true;
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
-			{
-
-				//myPlayer[0].gob[3].setPosition(myPlayer[0].mousePos.getPosition());
-				myPlayer[2].gob4isGrabbed = true;
-			}
-			//if (!sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
-			//{
-			//	gob4isGrabbed = false;
-			//}
-		}
-	}
-
-	if (myPlayer[2].gob1isGrabbed)
-	{
-		if (myPlayer[2].gob[0].getGlobalBounds().intersects(myPlayer[0].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
-		{
-			//std::cout << "collided with smallest" << std::endl;
-			// grab the thing here 
-			myPlayer[0].cannotGrab = true;
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
-			{
-
-				//myPlayer[0].gob[3].setPosition(myPlayer[0].mousePos.getPosition());
-				myPlayer[2].gob4isGrabbed = true;
-			}
-			//if (!sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
-			//{
-			//	gob4isGrabbed = false;
-			//}
-		}
-	}
-
-
-
-	
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// set ONE interacts with set TWO 
+	if (myPlayer[0].gob4isGrabbed)
+	{
+		if (myPlayer[0].gob[3].getGlobalBounds().intersects(myPlayer[1].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[1].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob2isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
+			{
+				myPlayer[0].gob3isGrabbed = true;
+			}
+		}
+		else if (myPlayer[0].gob[3].getGlobalBounds().intersects(myPlayer[1].gob[2].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[1].cannotGrab = true;
+		}
+		else if (myPlayer[0].gob[3].getGlobalBounds().intersects(myPlayer[1].gob[1].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[1].cannotGrab = true;
+		}
+		else if (myPlayer[0].gob[3].getGlobalBounds().intersects(myPlayer[1].gob[0].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[1].cannotGrab = true;
+		}
+
+	}
+
 
 	if (myPlayer[0].gob3isGrabbed)
 	{
@@ -507,7 +404,7 @@ void Game::mouseCheckGrab()
 			}
 		}
 
-		if (myPlayer[0].gob[2].getGlobalBounds().intersects(myPlayer[1].gob[2].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		else if (myPlayer[0].gob[2].getGlobalBounds().intersects(myPlayer[1].gob[2].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
 		{
 			std::cout << "HAPPENED" << std::endl;
 			myPlayer[1].cannotGrab = true;
@@ -517,6 +414,15 @@ void Game::mouseCheckGrab()
 				std::cout << "HAPPENED MOREEEEEEEEEEEEEEEEE" << std::endl;
 			}
 		}
+		else if (myPlayer[0].gob[2].getGlobalBounds().intersects(myPlayer[1].gob[1].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[1].cannotGrab = true;
+		}
+		else if (myPlayer[0].gob[2].getGlobalBounds().intersects(myPlayer[1].gob[0].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[1].cannotGrab = true;
+		}
+
 
 	}
 
@@ -549,9 +455,13 @@ void Game::mouseCheckGrab()
 				std::cout << "HAPPENED" << std::endl;
 			}
 		}
+		else if (myPlayer[0].gob[1].getGlobalBounds().intersects(myPlayer[1].gob[0].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[1].cannotGrab = true;
+		}
 	}
 
-	
+
 	if (myPlayer[0].gob1isGrabbed)
 	{
 		if (myPlayer[0].gob[0].getGlobalBounds().intersects(myPlayer[1].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
@@ -597,12 +507,38 @@ void Game::mouseCheckGrab()
 
 	}
 
-		
-	
+
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// set ONE interacts with set THREE 
+
+	if (myPlayer[0].gob4isGrabbed)
+	{
+		if (myPlayer[0].gob[3].getGlobalBounds().intersects(myPlayer[2].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[2].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob2isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
+			{
+				myPlayer[0].gob3isGrabbed = true;
+			}
+		}
+
+		else if (myPlayer[0].gob[3].getGlobalBounds().intersects(myPlayer[2].gob[2].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[2].cannotGrab = true;
+
+		}
+		else if (myPlayer[0].gob[3].getGlobalBounds().intersects(myPlayer[2].gob[1].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[2].cannotGrab = true;
+		}
+		else if (myPlayer[0].gob[3].getGlobalBounds().intersects(myPlayer[2].gob[0].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[2].cannotGrab = true;
+		}
+	}
+
 
 	if (myPlayer[0].gob3isGrabbed)
 	{
@@ -626,6 +562,14 @@ void Game::mouseCheckGrab()
 				std::cout << "HAPPENED" << std::endl;
 			}
 		}
+		else if (myPlayer[0].gob[2].getGlobalBounds().intersects(myPlayer[2].gob[1].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[2].cannotGrab = true;
+		}
+		else if (myPlayer[0].gob[2].getGlobalBounds().intersects(myPlayer[2].gob[0].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[2].cannotGrab = true;
+		}
 
 	}
 
@@ -646,7 +590,7 @@ void Game::mouseCheckGrab()
 		else if (myPlayer[0].gob[1].getGlobalBounds().intersects(myPlayer[2].gob[2].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
 		{
 			myPlayer[2].cannotGrab = true;
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false )
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false)
 			{
 				myPlayer[0].gob4isGrabbed = true;
 				std::cout << "HAPPENED" << std::endl;
@@ -656,11 +600,15 @@ void Game::mouseCheckGrab()
 		else if (myPlayer[0].gob[1].getGlobalBounds().intersects(myPlayer[2].gob[1].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
 		{
 			myPlayer[2].cannotGrab = true;
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false )
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false)
 			{
 				myPlayer[0].gob4isGrabbed = true;
 				std::cout << "HAPPENED" << std::endl;
 			}
+		}
+		else if (myPlayer[0].gob[1].getGlobalBounds().intersects(myPlayer[2].gob[0].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[2].cannotGrab = true;
 		}
 
 
@@ -674,7 +622,6 @@ void Game::mouseCheckGrab()
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false)
 			{
 				myPlayer[0].gob4isGrabbed = true;
-				std::cout << "HAPPENED" << std::endl;
 			}
 		}
 
@@ -685,7 +632,6 @@ void Game::mouseCheckGrab()
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false)
 			{
 				myPlayer[0].gob3isGrabbed = true;
-				std::cout << "HAPPENED" << std::endl;
 			}
 		}
 
@@ -695,7 +641,6 @@ void Game::mouseCheckGrab()
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false)
 			{
 				myPlayer[0].gob2isGrabbed = true;
-				std::cout << "HAPPENED" << std::endl;
 			}
 		}
 
@@ -705,169 +650,535 @@ void Game::mouseCheckGrab()
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false)
 			{
 				myPlayer[0].gob2isGrabbed = true;
-				std::cout << "HAPPENED" << std::endl;
 			}
 		}
 
 	}
 
+
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	// set TWO interacts with set ONE 
+
+	if (myPlayer[1].gob4isGrabbed)
+	{
+		if (myPlayer[1].gob[3].getGlobalBounds().intersects(myPlayer[0].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[0].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
+			{
+				myPlayer[1].gob3isGrabbed = true;
+			}
+		}
+		else if (myPlayer[1].gob[3].getGlobalBounds().intersects(myPlayer[0].gob[2].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[0].cannotGrab = true;
+
+		}
+		else if (myPlayer[1].gob[3].getGlobalBounds().intersects(myPlayer[0].gob[1].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[0].cannotGrab = true;
+		}
+		else if (myPlayer[1].gob[3].getGlobalBounds().intersects(myPlayer[0].gob[0].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[0].cannotGrab = true;
+		}
+
+	}
+
+
+	if (myPlayer[1].gob3isGrabbed)
+	{
+		if (myPlayer[1].gob[2].getGlobalBounds().intersects(myPlayer[0].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[0].cannotGrab = true;
+
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
+			{
+				myPlayer[1].gob4isGrabbed = true;
+			}
+		}
+
+		else if (myPlayer[1].gob[2].getGlobalBounds().intersects(myPlayer[0].gob[2].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[0].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
+			{
+				myPlayer[1].gob4isGrabbed = true;
+			}
+		}
+		else if (myPlayer[1].gob[2].getGlobalBounds().intersects(myPlayer[0].gob[1].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[0].cannotGrab = true;
+		}
+		else if (myPlayer[1].gob[2].getGlobalBounds().intersects(myPlayer[0].gob[0].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[0].cannotGrab = true;
+		}
+
+
+	}
+	if (myPlayer[1].gob2isGrabbed)
+	{
+		if (myPlayer[1].gob[1].getGlobalBounds().intersects(myPlayer[0].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[0].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
+			{
+				myPlayer[1].gob4isGrabbed = true;
+			}
+		}
+		else if (myPlayer[1].gob[1].getGlobalBounds().intersects(myPlayer[0].gob[2].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[0].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
+			{
+				myPlayer[1].gob4isGrabbed = true;
+			}
+		}
+		else if (myPlayer[1].gob[1].getGlobalBounds().intersects(myPlayer[0].gob[1].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[0].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false &&  myPlayer[0].gob1isGrabbed == false)
+			{
+				myPlayer[1].gob4isGrabbed = true;
+			}
+		}
+		else if (myPlayer[1].gob[1].getGlobalBounds().intersects(myPlayer[0].gob[0].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[0].cannotGrab = true;
+	
+		}
+
+
+	}
+
+	if (myPlayer[1].gob1isGrabbed)
+	{
+		if (myPlayer[1].gob[0].getGlobalBounds().intersects(myPlayer[0].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[0].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
+			{
+				myPlayer[1].gob4isGrabbed = true;
+			}
+		}
+		else if (myPlayer[1].gob[0].getGlobalBounds().intersects(myPlayer[0].gob[2].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[0].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
+			{
+				myPlayer[1].gob4isGrabbed = true;
+			}
+		}
+		else if (myPlayer[1].gob[0].getGlobalBounds().intersects(myPlayer[0].gob[1].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[0].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
+			{
+				myPlayer[1].gob4isGrabbed = true;
+			}
+		}
+		else if (myPlayer[1].gob[0].getGlobalBounds().intersects(myPlayer[0].gob[0].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[0].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
+			{
+				myPlayer[1].gob4isGrabbed = true;
+			}
+		}
+
+	}
+	
 
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// set TWO interacts with set THREE 
 
+
+	if (myPlayer[1].gob4isGrabbed)
+	{
+		if (myPlayer[1].gob[3].getGlobalBounds().intersects(myPlayer[2].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[2].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob2isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
+			{
+				myPlayer[1].gob3isGrabbed = true;
+			}
+		}
+		else if (myPlayer[1].gob[3].getGlobalBounds().intersects(myPlayer[2].gob[2].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[2].cannotGrab = true;
+		}
+		else if (myPlayer[1].gob[3].getGlobalBounds().intersects(myPlayer[2].gob[1].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[2].cannotGrab = true;
+		}
+		else if (myPlayer[1].gob[3].getGlobalBounds().intersects(myPlayer[2].gob[0].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[2].cannotGrab = true;
+		}
+	}
+
 	if (myPlayer[1].gob3isGrabbed)
 	{
 		if (myPlayer[1].gob[2].getGlobalBounds().intersects(myPlayer[2].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
 		{
-			std::cout << "HAPPENED" << std::endl;
-
-			//std::cout << "collided with smallest" << std::endl;
-			// grab the thing here 
 			myPlayer[2].cannotGrab = true;
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob2isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
 			{
-
-				//myPlayer[0].gob[3].setPosition(myPlayer[0].mousePos.getPosition());
 				myPlayer[1].gob4isGrabbed = true;
-				std::cout << "HAPPENED MOREEEEEEEEEEEEEEEEE" << std::endl;
 			}
-			//if (!sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
-			//{
-			//	gob4isGrabbed = false;
-			//}
+		}
+		else if (myPlayer[1].gob[2].getGlobalBounds().intersects(myPlayer[2].gob[2].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[2].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false)
+			{
+				myPlayer[1].gob4isGrabbed = true;
+			}
+		}
+		else if (myPlayer[1].gob[2].getGlobalBounds().intersects(myPlayer[2].gob[1].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[2].cannotGrab = true;
+		}
+		else if (myPlayer[1].gob[2].getGlobalBounds().intersects(myPlayer[2].gob[0].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[2].cannotGrab = true;
 		}
 	}
 
 	if (myPlayer[1].gob2isGrabbed)
 	{
-
 		if (myPlayer[1].gob[1].getGlobalBounds().intersects(myPlayer[2].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
 		{
-			//std::cout << "collided with smallest" << std::endl;
-			// grab the thing here 
-
 			myPlayer[2].cannotGrab = true;
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
 			{
-
-				//myPlayer[0].gob[3].setPosition(myPlayer[0].mousePos.getPosition());
 				myPlayer[1].gob4isGrabbed = true;
 				std::cout << "HAPPENED" << std::endl;
 			}
-			//if (!sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
-			//{
-			//	gob4isGrabbed = false;
-			//}
+
 		}
+		else if (myPlayer[1].gob[1].getGlobalBounds().intersects(myPlayer[2].gob[2].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[2].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false)
+			{
+				myPlayer[1].gob4isGrabbed = true;
+				std::cout << "HAPPENED" << std::endl;
+			}
+		}
+		else if (myPlayer[1].gob[1].getGlobalBounds().intersects(myPlayer[2].gob[1].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[2].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false)
+			{
+				myPlayer[1].gob4isGrabbed = true;
+				std::cout << "HAPPENED" << std::endl;
+			}
+		}
+		else if (myPlayer[1].gob[1].getGlobalBounds().intersects(myPlayer[2].gob[0].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[2].cannotGrab = true;
+		}
+
 	}
 
 	if (myPlayer[1].gob1isGrabbed)
 	{
 		if (myPlayer[1].gob[0].getGlobalBounds().intersects(myPlayer[2].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
 		{
-			//std::cout << "collided with smallest" << std::endl;
-			// grab the thing here 
 			myPlayer[2].cannotGrab = true;
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false)
 			{
-
-				//myPlayer[0].gob[3].setPosition(myPlayer[0].mousePos.getPosition());
 				myPlayer[1].gob4isGrabbed = true;
 				std::cout << "HAPPENED" << std::endl;
 			}
-			//if (!sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
-			//{
-			//	gob4isGrabbed = false;
-			//}
 		}
-
-		///////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////
+		else if (myPlayer[1].gob[0].getGlobalBounds().intersects(myPlayer[2].gob[2].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[2].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false)
+			{
+				myPlayer[1].gob4isGrabbed = true;
+				std::cout << "HAPPENED" << std::endl;
+			}
+		}
+		else if (myPlayer[1].gob[0].getGlobalBounds().intersects(myPlayer[2].gob[1].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[2].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false)
+			{
+				myPlayer[1].gob4isGrabbed = true;
+				std::cout << "HAPPENED" << std::endl;
+			}
+		}
+		else if (myPlayer[1].gob[0].getGlobalBounds().intersects(myPlayer[2].gob[0].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[2].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false)
+			{
+				myPlayer[1].gob4isGrabbed = true;
+				std::cout << "HAPPENED" << std::endl;
+			}
+		}
 	}
-	
+
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		// set THREE interacts with set TWO 
+
+
+
+	// set THREE interacts with set ONE 
+
+
+	if (myPlayer[2].gob4isGrabbed)
+	{
+		if (myPlayer[2].gob[3].getGlobalBounds().intersects(myPlayer[0].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[0].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
+			{
+				myPlayer[2].gob3isGrabbed = true;
+			}
+		}
+		else if (myPlayer[2].gob[3].getGlobalBounds().intersects(myPlayer[0].gob[2].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[0].cannotGrab = true;
+		}
+		else if (myPlayer[2].gob[3].getGlobalBounds().intersects(myPlayer[0].gob[1].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[0].cannotGrab = true;
+
+		}
+		else if (myPlayer[2].gob[3].getGlobalBounds().intersects(myPlayer[0].gob[0].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[0].cannotGrab = true;
+		}
+	}
+
 	if (myPlayer[2].gob3isGrabbed)
 	{
-
-		if (myPlayer[2].gob[2].getGlobalBounds().intersects(myPlayer[1].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		if (myPlayer[2].gob[2].getGlobalBounds().intersects(myPlayer[0].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
 		{
-			std::cout << "HAPPENED" << std::endl;
+			myPlayer[0].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
+			{
+				myPlayer[2].gob4isGrabbed = true;
+			}
+		}
+		else if (myPlayer[2].gob[2].getGlobalBounds().intersects(myPlayer[0].gob[2].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[0].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
+			{
+				myPlayer[2].gob4isGrabbed = true;
+			}
+		}
+		else if (myPlayer[2].gob[2].getGlobalBounds().intersects(myPlayer[0].gob[1].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[0].cannotGrab = true;
 
-			//std::cout << "collided with smallest" << std::endl;
-			// grab the thing here 
+		}
+		else if (myPlayer[2].gob[1].getGlobalBounds().intersects(myPlayer[0].gob[0].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[0].cannotGrab = true;
+		}
+	}
+	if (myPlayer[2].gob2isGrabbed)
+	{
+
+		if (myPlayer[2].gob[1].getGlobalBounds().intersects(myPlayer[0].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[0].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
+			{
+				myPlayer[2].gob4isGrabbed = true;
+			}
+		}
+		else if (myPlayer[2].gob[1].getGlobalBounds().intersects(myPlayer[0].gob[2].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[0].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
+			{
+				myPlayer[2].gob4isGrabbed = true;
+			}
+		}
+		else if (myPlayer[2].gob[1].getGlobalBounds().intersects(myPlayer[0].gob[1].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[0].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
+			{
+				myPlayer[2].gob4isGrabbed = true;
+			}
+		}
+		else if (myPlayer[2].gob[1].getGlobalBounds().intersects(myPlayer[0].gob[0].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[0].cannotGrab = true;
+		}
+	}
+
+	if (myPlayer[2].gob1isGrabbed)
+	{
+		if (myPlayer[2].gob[0].getGlobalBounds().intersects(myPlayer[0].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[0].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
+			{
+				myPlayer[2].gob4isGrabbed = true;
+			}
+		}
+		else if (myPlayer[2].gob[0].getGlobalBounds().intersects(myPlayer[0].gob[2].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[0].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
+			{
+				myPlayer[2].gob4isGrabbed = true;
+			}
+		}
+		else if (myPlayer[2].gob[0].getGlobalBounds().intersects(myPlayer[0].gob[1].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[0].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
+			{
+				myPlayer[2].gob4isGrabbed = true;
+			}
+		}
+		else if (myPlayer[2].gob[0].getGlobalBounds().intersects(myPlayer[0].gob[0].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[0].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
+			{
+				myPlayer[2].gob4isGrabbed = true;
+			}
+		}
+	}
+
+
+		// set THREE interacts with set TWO 
+
+	if (myPlayer[2].gob4isGrabbed)
+	{
+		if (myPlayer[2].gob[3].getGlobalBounds().intersects(myPlayer[1].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
 			myPlayer[1].cannotGrab = true;
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob2isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
 			{
-
-				//myPlayer[0].gob[3].setPosition(myPlayer[0].mousePos.getPosition());
-				myPlayer[2].gob4isGrabbed = true;
-				std::cout << "HAPPENED MOREEEEEEEEEEEEEEEEE" << std::endl;
+				myPlayer[2].gob3isGrabbed = true;
 			}
-			//if (!sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
-			//{
-			//	gob4isGrabbed = false;
-			//}
+		}
+		else if (myPlayer[2].gob[3].getGlobalBounds().intersects(myPlayer[1].gob[2].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[1].cannotGrab = true;
+		}
+		else if (myPlayer[2].gob[3].getGlobalBounds().intersects(myPlayer[1].gob[1].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[1].cannotGrab = true;
+		}
+		else if (myPlayer[2].gob[3].getGlobalBounds().intersects(myPlayer[1].gob[0].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[1].cannotGrab = true;
+		}
+	}
+
+	if (myPlayer[2].gob3isGrabbed)
+	{
+		if (myPlayer[2].gob[2].getGlobalBounds().intersects(myPlayer[1].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[1].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob2isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
+			{
+				myPlayer[2].gob4isGrabbed = true;
+			}
+		}
+		else if (myPlayer[2].gob[2].getGlobalBounds().intersects(myPlayer[1].gob[2].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[1].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false)
+			{
+				myPlayer[2].gob4isGrabbed = true;
+			}
+		}
+		else if (myPlayer[2].gob[2].getGlobalBounds().intersects(myPlayer[1].gob[1].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[1].cannotGrab = true;
+		}
+		else if (myPlayer[2].gob[2].getGlobalBounds().intersects(myPlayer[1].gob[0].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[1].cannotGrab = true;
 		}
 
 	}
 
 	if (myPlayer[2].gob2isGrabbed)
 	{
-
 		if (myPlayer[2].gob[1].getGlobalBounds().intersects(myPlayer[1].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
 		{
-			//std::cout << "collided with smallest" << std::endl;
-			// grab the thing here 
-
 			myPlayer[1].cannotGrab = true;
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob1isGrabbed == false)
 			{
-
-				//myPlayer[0].gob[3].setPosition(myPlayer[0].mousePos.getPosition());
 				myPlayer[2].gob4isGrabbed = true;
-				std::cout << "HAPPENED" << std::endl;
 			}
-			//if (!sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
-			//{
-			//	gob4isGrabbed = false;
-			//}
 		}
+		else if (myPlayer[2].gob[1].getGlobalBounds().intersects(myPlayer[1].gob[2].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[1].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false)
+			{
+				myPlayer[2].gob4isGrabbed = true;
+			}
+		}
+		else if (myPlayer[2].gob[1].getGlobalBounds().intersects(myPlayer[1].gob[1].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[1].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false)
+			{
+				myPlayer[2].gob4isGrabbed = true;
+			}
+		}
+		else if (myPlayer[2].gob[1].getGlobalBounds().intersects(myPlayer[1].gob[0].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[1].cannotGrab = true;
+		}
+
 	}
 
 	if (myPlayer[2].gob1isGrabbed)
 	{
-
 		if (myPlayer[2].gob[0].getGlobalBounds().intersects(myPlayer[1].gob[3].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
 		{
-			//std::cout << "collided with smallest" << std::endl;
-			// grab the thing here 
 			myPlayer[1].cannotGrab = true;
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false)
 			{
-
-				//myPlayer[0].gob[3].setPosition(myPlayer[0].mousePos.getPosition());
 				myPlayer[2].gob4isGrabbed = true;
-				std::cout << "HAPPENED" << std::endl;
 			}
-			//if (!sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
-			//{
-			//	gob4isGrabbed = false;
-			//}
 		}
-
-		///////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////
+		else if (myPlayer[2].gob[0].getGlobalBounds().intersects(myPlayer[1].gob[2].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[1].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false)
+			{
+				myPlayer[2].gob4isGrabbed = true;
+			}
+		}
+		else if (myPlayer[2].gob[0].getGlobalBounds().intersects(myPlayer[1].gob[1].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[1].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false)
+			{
+				myPlayer[2].gob4isGrabbed = true;
+			}
+		}
+		else if (myPlayer[2].gob[0].getGlobalBounds().intersects(myPlayer[1].gob[0].getGlobalBounds()))// HERE IS THE CHECK FIOR  LARGE CIRCLE
+		{
+			myPlayer[1].cannotGrab = true;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && myPlayer[0].m_isGobGrabbed == false && myPlayer[0].gob3isGrabbed == false && myPlayer[0].gob2isGrabbed == false)
+			{
+				myPlayer[2].gob4isGrabbed = true;
+			}
+		}
 	}
-
 }
 
